@@ -5,12 +5,15 @@ import main.cruddatabuku.buku.DataBuku;
 import java.util.List;
 import java.util.Scanner;
 
+import static main.cruddatabuku.util.Kamus.clearScreen;
+
 public class MainMenu {
 
     public MainMenu(List<DataBuku> listDataBuku, String fileName) {
         Scanner input = new Scanner(System.in);
         String menu;
         do {
+            clearScreen();
             System.out.println("Program Daftar Buku");
             System.out.println("[1] Lihat Daftar Buku");
             System.out.println("[2] Cari Buku");

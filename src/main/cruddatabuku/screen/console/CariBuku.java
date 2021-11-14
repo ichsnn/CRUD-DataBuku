@@ -9,53 +9,57 @@ import static main.cruddatabuku.util.Berkas.tampilData;
 import static main.cruddatabuku.util.Kamus.*;
 
 public class CariBuku {
-    int opsi;
+    String opsi;
     String jenisAtribut;
     String dicari;
-    Scanner inputOpsi = new Scanner(System.in);
-    Scanner search = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
 
     public CariBuku(List<DataBuku> listDataBuku) {
         do {
+            clearScreen();
             System.out.println("[1] Kode Buku");
             System.out.println("[2] Judul Buku");
             System.out.println("[3] Penulis");
             System.out.println("[4] Penerbit");
             System.out.println("[5] Tahun Terbit");
             System.out.println("[0] Kembali");
-            System.out.print("Masukkan pilihan : ");
-            opsi = inputOpsi.nextInt();
+            System.out.print("~ Jenis atribut : ");
+            opsi = input.nextLine();
             jenisAtribut = filter(opsi);
             switch (opsi) {
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                    System.out.print("Cari : ");
-                    dicari = search.nextLine();
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                    System.out.print("~ Cari : ");
+                    dicari = input.nextLine();
                     tampilData(listDataBuku, jenisAtribut, dicari);
+                    System.out.println("Tekan [Enter] untuk kembali...");
+                    System.out.println();
+                    input.nextLine();
                     break;
             }
-        } while (opsi != 0);
+        } while (!"0".contentEquals(opsi));
     }
 
-    private static String filter(int opsi) {
+    // method untuk melakukan filter terhadap opsi merubahnya kedalam string nama jenisAtribut yang ada pada class Buku.java
+    private static String filter(String opsi) {
         String filtered;
         switch (opsi) {
-            case 1:
+            case "1":
                 filtered = KODEBUKU;
                 break;
-            case 2:
+            case "2":
                 filtered = JUDULBUKU;
                 break;
-            case 3:
+            case "3":
                 filtered = PENULIS;
                 break;
-            case 4:
+            case "4":
                 filtered = PENERBIT;
                 break;
-            case 5:
+            case "5":
                 filtered = TAHUNTERBIT;
                 break;
             default:

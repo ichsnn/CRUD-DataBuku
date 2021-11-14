@@ -33,7 +33,7 @@ public interface Kamus {
     };
 
     static void printExist() {
-        System.out.println("Data Buku Sudah Ada!");
+        System.out.println("Data uku sudah ada!");
     }
 
     static void printError() {
@@ -41,15 +41,24 @@ public interface Kamus {
     }
 
     static void printWrong() {
-        System.out.println("Terjadi Kesalahan!");
+        System.out.println("Terjadi kesalahan!");
     }
 
     static void printUpdateSuccess() {
-        System.out.println("Update Data Berhasil");
+        System.out.println("Update data berhasil");
     }
 
     static void printIdNotFound() {
         System.out.println("ID tidak ditemukan!");
+    }
+
+    static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    static void printPressEnter(){
+        System.out.println("Tekan [Enter] untuk kemabali...");
     }
 
 }

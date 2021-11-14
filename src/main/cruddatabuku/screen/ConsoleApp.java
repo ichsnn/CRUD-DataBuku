@@ -16,21 +16,34 @@ import java.util.List;
 import java.util.Scanner;
 
 import static main.cruddatabuku.util.Berkas.memuatDataBuku;
+import static main.cruddatabuku.util.Kamus.clearScreen;
+import static main.cruddatabuku.util.Kamus.printError;
 
 public class ConsoleApp implements Berkas {
     protected List<DataBuku> listDataBuku = new ArrayList<>();
     protected String fileName = "dataBuku.txt";
 
     public ConsoleApp() {
+        clearScreen();
         Scanner input = new Scanner(System.in);
         boolean sukses = false;
         String createNewFile;
 
+        if (!new File(fileName).exists()) {
+            File file = new File(fileName);
+            try {
+                boolean ready = file.createNewFile();
+                if (ready)
+                    System.out.println("Default file created!");
+            } catch (IOException e) {
+                printError();
+            }
+        }
         // proses inisialisi nama file / file name, jika user memilih tidak menginputkan (T), maka akan menggunakan nama file default / bawaan
         String opsi;
         System.out.println("Apakah ada file yang ingin dibuka (Y/T) ?");
         do {
-            System.out.print("~ (default : dataMahasiswa.txt) : ");
+            System.out.print("~ (default : dataBuku.txt) : ");
             opsi = input.nextLine();
             if ("T".contentEquals(opsi.toUpperCase())) {
                 break;
@@ -82,5 +95,6 @@ public class ConsoleApp implements Berkas {
         if (sukses) {
             new MainMenu(listDataBuku, fileName);
         }
+        input.close();
     }
 }

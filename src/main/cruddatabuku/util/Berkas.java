@@ -30,6 +30,7 @@ public interface Berkas {
                             String data = readFile.nextLine();
                             listDataBuku.add(createBuku(data));
                         }
+                        readFile.close();
                         return true;
                     } else {
                         System.out.println("Terjadi Kesalahan Didalam File!");
@@ -125,7 +126,7 @@ public interface Berkas {
             kodeBuku = validasiInput("Kode Buku", P_KODEBUKU);
             for (DataBuku buku : listDataBuku) {
                 if (buku.getKodeBuku().contentEquals(kodeBuku)) {
-                    System.out.println("Kode Buku Sudah Ada!");
+                    System.out.println("Kode buku sudah ada!");
                     sameValue = true;
                     break;
                 } else {

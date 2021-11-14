@@ -16,14 +16,16 @@ public class UpdateBuku {
 
     public UpdateBuku(List<DataBuku> listDataBuku, String fileName) {
         String opsi;
+        Scanner input = new Scanner(System.in);
         do {
+            clearScreen();
             System.out.println("[1] Kode Buku");
             System.out.println("[2] Judul Buku");
             System.out.println("[3] Penulis");
             System.out.println("[4] Penerbit");
             System.out.println("[5] Tahun Terbit");
             System.out.println("[0] Kembali");
-            Scanner input = new Scanner(System.in);
+            System.out.print("~ Jenis atribut : ");
             opsi = input.nextLine();
             jenisAtribut = filter(opsi);
             switch (opsi) {
@@ -33,7 +35,12 @@ public class UpdateBuku {
                 case "4":
                 case "5":
                     boolean idExeption = false;
-                    id = Integer.parseInt(validasiInput("id"));
+                    String idValue;
+                    do {
+                        System.out.print("~ ID : ");
+                        idValue = input.nextLine();
+                    } while (!idValue.matches("^[\\d]+$"));
+                    id = Integer.parseInt(idValue);
                     for (DataBuku buku : listDataBuku) {
                         if (buku.getId() == id) {
                             idExeption = true;
@@ -51,8 +58,8 @@ public class UpdateBuku {
         } while (!"0".contentEquals(opsi));
     }
 
-    private static String filter(String opsi) {
-        String filtered;
+    private String filter(String opsi) {
+        String filtered = null;
         switch (opsi) {
             case "1":
                 filtered = KODEBUKU;
@@ -69,8 +76,6 @@ public class UpdateBuku {
             case "5":
                 filtered = TAHUNTERBIT;
                 break;
-            default:
-                filtered = null;
         }
         return filtered;
     }
@@ -82,7 +87,6 @@ public class UpdateBuku {
                 break;
             case JUDULBUKU:
                 getJudulBukuSaatIni(listDataBuku);
-                System.out.println("Isi data saat ini : " + listDataBuku.get(id).getKodeBuku());
                 isiData = validasiInput("Judul Buku");
                 break;
             case PENULIS:
@@ -107,7 +111,7 @@ public class UpdateBuku {
             isiData = validasiInput("Kode Buku", P_KODEBUKU);
             for (DataBuku buku : listDataBuku) {
                 if (buku.getKodeBuku().contentEquals(isiData)) {
-                    printExist();
+                    System.out.println("Kode buku sudah ada!");
                     sameValue = true;
                     break;
                 } else {
