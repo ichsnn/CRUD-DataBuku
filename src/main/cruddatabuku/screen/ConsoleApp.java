@@ -28,17 +28,21 @@ public class ConsoleApp implements Berkas {
 
         // proses inisialisi nama file / file name, jika user memilih tidak menginputkan (T), maka akan menggunakan nama file default / bawaan
         String opsi;
-        System.out.println("Apakah ada file yang ingin dibuka (Y/T) ? (default : dataMahasiswa.txt)");
+        System.out.println("Apakah ada file yang ingin dibuka (Y/T) ?");
         do {
-            System.out.print("~ ");
+            System.out.print("~ (default : dataMahasiswa.txt) : ");
             opsi = input.nextLine();
             if ("T".contentEquals(opsi.toUpperCase())) {
                 break;
-            } else if ("Y".contentEquals(opsi.toUpperCase())) {
-                System.out.println("Masukkan nama file yang ingin dibuka :");
-                System.out.print("~ ");
-                fileName = input.nextLine();
-                sukses = memuatDataBuku(new File(fileName), listDataBuku);
+            } else if ("Y".contentEquals(opsi.toUpperCase()) || "".contentEquals(opsi)) {
+                if ("".contentEquals(opsi)) {
+                    break;
+                } else {
+                    System.out.println("Masukkan nama file yang ingin dibuka :");
+                    System.out.print("~ ");
+                    fileName = input.nextLine();
+                    sukses = memuatDataBuku(new File(fileName), listDataBuku);
+                }
             } else {
                 System.out.println("Masukkan Salah!");
             }
