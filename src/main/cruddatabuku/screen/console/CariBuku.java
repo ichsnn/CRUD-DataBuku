@@ -17,6 +17,7 @@ public class CariBuku {
     public CariBuku(List<DataBuku> listDataBuku) {
         do {
             clearScreen();
+            System.out.println("CARI BUKU");
             System.out.println("[1] Kode Buku");
             System.out.println("[2] Judul Buku");
             System.out.println("[3] Penulis");
@@ -34,7 +35,9 @@ public class CariBuku {
                 case "5":
                     System.out.print("~ Cari : ");
                     dicari = input.nextLine();
+                    System.out.println();
                     tampilData(listDataBuku, jenisAtribut, dicari);
+                    System.out.println();
                     System.out.println("Tekan [Enter] untuk kembali...");
                     System.out.println();
                     input.nextLine();

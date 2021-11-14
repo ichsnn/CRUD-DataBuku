@@ -197,6 +197,7 @@ public interface Berkas {
             bufferedWriter.close();
             fileWriter.close();
             printUpdateSuccess();
+            new Scanner(System.in).nextLine();
         } catch (IOException e) {
             e.printStackTrace();
         }

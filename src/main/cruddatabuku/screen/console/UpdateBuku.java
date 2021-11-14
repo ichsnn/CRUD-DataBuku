@@ -19,6 +19,7 @@ public class UpdateBuku {
         Scanner input = new Scanner(System.in);
         do {
             clearScreen();
+            System.out.println("UPDATE BUKU");
             System.out.println("[1] Kode Buku");
             System.out.println("[2] Judul Buku");
             System.out.println("[3] Penulis");
@@ -49,6 +50,7 @@ public class UpdateBuku {
                     }
                     if (!idExeption) {
                         printIdNotFound();
+                        new Scanner(System.in).nextLine();
                         break;
                     }
                     validasiIsiData(listDataBuku);

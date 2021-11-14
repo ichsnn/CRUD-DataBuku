@@ -14,7 +14,7 @@ public class MainMenu {
         String menu;
         do {
             clearScreen();
-            System.out.println("Program Daftar Buku");
+            System.out.println("PROGRAM DAFTAR BUKU");
             System.out.println("[1] Lihat Daftar Buku");
             System.out.println("[2] Cari Buku");
             System.out.println("[3] Tambah Buku");

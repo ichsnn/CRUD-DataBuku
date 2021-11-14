@@ -1,2 +1,4 @@
-1#KB0003#Pemrograman Objek Berorientasi Java#Adam Muchril#INFORMATIKA#null
+1#KB0003#Pemrograman Objek Berorientasi Java#Adam Muchril#Informatika#null
 2#KB0001#Algoritma dan Pemrograman#Adam Idris#Gramedia#2015
+3#KB0010#OOP#Adam#Gramedia#2018
+4#KB9821#Pudding#Rian#Informatika#2020
