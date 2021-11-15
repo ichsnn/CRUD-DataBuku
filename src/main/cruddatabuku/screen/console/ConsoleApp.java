@@ -3,7 +3,7 @@ ConsoleApp.java | merupakan file untuk mengontrol jalannya program.
 Panggil file ini di main file dengan syntax ' new ConsoleApp(); '
  */
 
-package main.cruddatabuku.screen;
+package main.cruddatabuku.screen.console;
 
 import main.cruddatabuku.buku.DataBuku;
 import main.cruddatabuku.screen.console.MainMenu;

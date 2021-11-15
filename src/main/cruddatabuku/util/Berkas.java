@@ -182,7 +182,7 @@ public interface Berkas {
         update(fileName, listDataBuku);
     }
 
-    private static void update(String fileName, List<DataBuku> listDataBuku) {
+    static void update(String fileName, List<DataBuku> listDataBuku) {
         File file = new File(fileName);
         try {
             FileWriter fileWriter = new FileWriter(file);
@@ -200,6 +200,36 @@ public interface Berkas {
             new Scanner(System.in).nextLine();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    static void deleteData(String fileName, List<DataBuku> listDataBuku, int id) {
+        int listIndex = 0;
+        boolean ketemu = false;
+        for (DataBuku buku : listDataBuku) {
+            if (buku.getId() == id) {
+                ketemu = true;
+                break;
+            }
+            listIndex++;
+        }
+
+        if (ketemu) {
+            listDataBuku.remove(listIndex);
+            update(fileName, listDataBuku);
+        } else {
+            printIdNotFound();
+            new Scanner(System.in).nextLine();
+        }
+    }
+
+    static void deleteSemuaData(String fileName, List<DataBuku> listDataBuku) {
+        if (listDataBuku.isEmpty()) {
+            System.out.print("Isi file kosong!");
+            new Scanner(System.in).nextLine();
+        } else {
+            listDataBuku.clear();
+            update(fileName, listDataBuku);
         }
     }
 

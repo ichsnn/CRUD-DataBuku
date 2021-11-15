@@ -19,6 +19,7 @@ public class MainMenu {
             System.out.println("[2] Cari Buku");
             System.out.println("[3] Tambah Buku");
             System.out.println("[4] Update Buku");
+            System.out.println("[5] Hapus Buku");
             System.out.println("[0] Keluar");
             System.out.print("Menu : ");
             menu = input.nextLine();
@@ -34,6 +35,9 @@ public class MainMenu {
                     break;
                 case "4":
                     new UpdateBuku(listDataBuku, fileName);
+                    break;
+                case  "5":
+                    new HapusBuku(listDataBuku, fileName);
                     break;
             }
         } while (!"0".contentEquals(menu));
