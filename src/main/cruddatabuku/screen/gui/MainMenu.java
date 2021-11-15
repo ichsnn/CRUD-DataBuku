@@ -3,8 +3,8 @@ package main.cruddatabuku.screen.gui;
 import main.cruddatabuku.buku.DataBuku;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -30,6 +30,9 @@ public class MainMenu extends JFrame {
 
     List<DataBuku> listDataBuku = new ArrayList<>();
 
+    String[] tableHeader = {"ID", "Kode Buku", "Judul Buku", "Jenis Buku", "Penulis", "Penerbit", "Tahun Terbit"};
+    String[][] tableData;
+
     public MainMenu() {
         btnCariBuku.setFocusable(false);
         btnTambahBuku.setFocusable(false);
@@ -41,8 +44,7 @@ public class MainMenu extends JFrame {
 
         int row = listDataBuku.size();
         int col = 7;
-        String[] tableHeader = {"ID", "Kode Buku", "Judul Buku", "Jenis Buku", "Penulis", "Penerbit", "Tahun Terbit"};
-        String[][] tableData = new String[row][col];
+        tableData = new String[row][col];
 
         int indexTable = 0;
         for (DataBuku buku : listDataBuku) {
@@ -55,16 +57,30 @@ public class MainMenu extends JFrame {
             tableData[indexTable][6] = buku.getTahunTerbit();
             indexTable++;
         }
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
         table = new JTable(tableData, tableHeader) {
             public boolean isCellEditable(int data, int columns) {
                 return false;
             }
         };
-        table.setPreferredScrollableViewportSize(new Dimension(400, 400));
+
+        for (int i = 0; i < tableHeader.length; i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+        table.getColumnModel().getColumn(0).setMaxWidth(50);
+        table.getColumnModel().getColumn(6).setPreferredWidth(110);
+        table.getColumnModel().getColumn(6).setMaxWidth(110);
+
+        System.out.println(table.getColumnModel().getColumn(0).getWidth());
+        System.out.println(table.getColumnModel().getColumn(0).getPreferredWidth());
         table.setFillsViewportHeight(true);
         table.setAutoscrolls(true);
         table.setAutoCreateRowSorter(true);
         table.setShowGrid(false);
+
 
         table.setBackground(Color.white);
         table.setOpaque(true);
@@ -106,11 +122,10 @@ public class MainMenu extends JFrame {
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new BorderLayout());
-        System.out.println(bottomPanel.getBorder());
         bottomPanel.add(tablePane, BorderLayout.CENTER);
 
         containerPanel = new JPanel();
-        containerPanel.setBorder(new EmptyBorder(10, 25, 10, 25));
+        containerPanel.setBorder(new EmptyBorder(30, 25, 10, 25));
         containerPanel.setBackground(Color.WHITE);
         containerPanel.setOpaque(true);
         containerPanel.setLayout(new BorderLayout(0, 25));
