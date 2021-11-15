@@ -67,7 +67,7 @@ public class DataBuku {
 
     // Digunakan untuk menentukan jenis buku dari kode buku, Akfif ketika membuata buku baru, mengubah kode buku, atau ketika melakukan proses pengambilan data dari database (flat file.txt)
     private void setJenisBuku(String kodeBuku) {
-        String kode = kodeBuku.substring(3, 6);
+        String kode = kodeBuku.substring(2, 5);
         Pattern p;
         Matcher m;
         for (String[] strings : KODE_JENISBUKU) {
