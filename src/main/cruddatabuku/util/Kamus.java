@@ -20,16 +20,16 @@ public interface Kamus {
     Pattern P_KODEBUKU = Pattern.compile("^KB[\\d]{3}\\d+$");
     Pattern P_TAHUNTERBIT = Pattern.compile("^[\\d]{4}$");
     String[][] KODE_JENISBUKU = {
-            {"0[0-9]{2,2}", "Karya Umum"},
-            {"1[0-9]{2,2}", "Filsafat"},
-            {"2[0-9]{2,2}", "Agama"},
-            {"3[0-9]{2,2}", "Ilmu Sosial"},
-            {"4[0-9]{2,2}", "Bahasa"},
-            {"5[0-9]{2,2}", "Ilmu Murni"},
-            {"6[0-9]{2,2}", "Pengetahuan Praktis"},
-            {"7[0-9]{2,2}", "Kesenian dan Hiburan"},
-            {"8[0-9]{2,2}", "Kesusatraan"},
-            {"9[0-9]{2,2}", "Sejarah"},
+            {"^0[0-9]{2,2}$", "Karya Umum"},
+            {"^1[0-9]{2,2}$", "Filsafat"},
+            {"^2[0-9]{2,2}$", "Agama"},
+            {"^3[0-9]{2,2}$", "Ilmu Sosial"},
+            {"^4[0-9]{2,2}$", "Bahasa"},
+            {"^5[0-9]{2,2}$", "Ilmu Murni"},
+            {"^6[0-9]{2,2}$", "Pengetahuan Praktis"},
+            {"^7[0-9]{2,2}$", "Kesenian dan Hiburan"},
+            {"^8[0-9]{2,2}$", "Kesusatraan"},
+            {"^9[0-9]{2,2}$", "Sejarah"},
     };
 
     static void printExist() {
