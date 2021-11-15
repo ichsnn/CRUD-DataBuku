@@ -1,5 +1,5 @@
 1#KB9001#Algoritma dan Pemrograman#Rinaldi Munir#Informatika#2018
-2#KB3002#Algoritma dan Pemrograman#Rinaldi Munir#Informatika#2018
-3#KB5001#Algoritma dan Pemrograman#Rinaldi Munir#Informatika#2018
+2#KB3002#Algoritma dan Pemrograman#Rinaldi Munir#Gramedia#2018
+3#KB5001#Algoritma dan Pemrograman#Rinaldi Munir#Pujangga#2018
 4#KB1001#Algoritma dan Pemrograman#Rinaldi Munir#Informatika#2018
 5#KB0001#Algoritma dan Pemrograman#Rinaldi Munir#Informatika#2018
