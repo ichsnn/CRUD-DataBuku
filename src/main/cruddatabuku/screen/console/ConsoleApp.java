@@ -21,7 +21,7 @@ import static main.cruddatabuku.util.Kamus.printError;
 
 public class ConsoleApp implements Berkas {
     protected List<DataBuku> listDataBuku = new ArrayList<>();
-    protected String fileName = "dataBuku.txt";
+    protected String fileName = ".\\data\\dataBuku.txt";
 
     public ConsoleApp() {
         clearScreen();
@@ -46,7 +46,7 @@ public class ConsoleApp implements Berkas {
         System.out.print("~ (default : dataBuku.txt) : ");
         open = input.nextLine();
         if(!open.isEmpty()) {
-            fileName = open;
+            fileName = "data\\" + open;
         }
         // load file sesuai dengan file name yang diinputkan, program akan memeriksa default file name (dataBuku.txt)
         // jika saat proses load data ada kesalahan maka program akan meminta membuat file baru
