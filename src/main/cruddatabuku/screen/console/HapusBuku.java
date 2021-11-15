@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static main.cruddatabuku.util.Berkas.*;
+import static main.cruddatabuku.util.Kamus.*;
 
 public class HapusBuku {
     public HapusBuku(List<DataBuku> listDataBuku, String fileName) {
@@ -13,6 +14,7 @@ public class HapusBuku {
         Scanner inputInt = new Scanner(System.in);
         String opsi;
         do {
+            clearScreen();
             System.out.println("[1] Hapus Satu Buku");
             System.out.println("[2] Hapus Semua Buku");
             System.out.println("[0] Kembali");
