@@ -1,10 +1,1 @@
-1#KB9001#Algoritma dan Pemrograman#Rinaldi Muras#Gramediasa#2017
-2#KB3002#Algoritma dan Pemrogramanasa#Rinaldi Munir#Gramedia#2018
-3#KB5001#Algoritma dan Pemrograman#Rinaldi Munir#Pujangga#2018
-4#KB1001#Algoritma dan Pemrograman#Rinaldi Munir#Informatika#2018
-5#KB0001#Algoritma dan Pemrograman#Rinaldi Munir#Informatika#2018
-6#KB5003#INI APA#Bodo Amat#Bodo#2016
-7#KB5002#Tentang Kumbang#Kumbang#Kumbang Hitam#2012
-8#KB0005####2016
-9#KB00011#OOP#Adam#Gramedia#2017
-10#KB7001#Memasak Makanan#Chef Arnold#Gramedia#2012
+1#KB0001#Algoritma dan Pemrograman#Rinaldi Munir#Informatika#2017

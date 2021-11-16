@@ -44,8 +44,10 @@ public class GUIApp extends JFrame implements ActionListener {
         file = new File("./data/dataBuku.txt");
         label1 = new JLabel("File : ");
         textField = new JTextField();
+        //textField.setFont(new Font("Calibri", Font.PLAIN, 16));
+        System.out.println(textField.getFont());
         textField.setBackground(Color.white);
-        textField.setPreferredSize(new Dimension(100, textField.getHeight()));
+        textField.setPreferredSize(new Dimension(100, 16));
         textField.setText(file.getPath());
         textField.setMargin(new Insets(5, 10, 5, 10));
         textField.setCaretPosition(file.getPath().length());

@@ -53,10 +53,20 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     TambahBuku tambahBukuDialog;
     UpdateBuku updateBukuDialog;
 
+    boolean sukses;
+
     public Editor(File file) {
         this.fileName = file.getPath();
         this.setIconImage(appIcon.getImage());
-        this.setTitle("Aplikasi Pengelola Daftar Buku (" + fileName + ")");
+
+        sukses = memuatDataBuku(file, listDataBuku);
+
+        if (!sukses) {
+            this.setTitle("Aplikasi Pengelola Daftar Buku (ERROR)");
+        } else {
+            this.setTitle("Aplikasi Pengelola Daftar Buku (" + fileName + ")");
+        }
+
         // Button
         btnTambahBuku.setFocusable(false);
         btnTambahBuku.addActionListener(this);
@@ -64,6 +74,12 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         btnUpdateBuku.addActionListener(this);
         btnHapusBuku.setFocusable(false);
         btnHapusBuku.addActionListener(this);
+
+        if (!sukses) {
+            btnTambahBuku.setEnabled(false);
+            btnUpdateBuku.setEnabled(false);
+            btnHapusBuku.setEnabled(false);
+        }
 
         // Buat tabel
         defaultTableModel = new DefaultTableModel() {
@@ -290,12 +306,12 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     }
 
     public void loadData() {
-        File file = new File(fileName);
-        boolean sukses = memuatDataBuku(file, listDataBuku);
         if (sukses) {
             for (DataBuku buku : listDataBuku) {
                 defaultTableModel.addRow(buku.geetArrayFormat());
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "File / Folder tidak ditemukan!", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }
 
