@@ -1,9 +1,11 @@
 package main.cruddatabuku.screen.gui;
 
 import main.cruddatabuku.buku.DataBuku;
+import main.cruddatabuku.util.Berkas;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,9 +17,13 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static main.cruddatabuku.util.Berkas.updateData;
 import static main.cruddatabuku.util.Kamus.*;
 
-public class TambahBuku extends JDialog implements ActionListener {
+public class UpdateBuku extends JDialog implements ActionListener {
+    private int id, row;
+    private String kodeBuku, judulBuku, penulis, penerbit, tahunTerbit;
+
     JPanel container;
     JPanel inputContainer;
     JPanel buttonContainer;
@@ -28,7 +34,7 @@ public class TambahBuku extends JDialog implements ActionListener {
     private JTextField textFieldPenerbit;
     private JTextField textFieldTahunTerbit;
 
-    private JButton submitButton = new JButton("Submit");
+    private JButton updateButton = new JButton("Update");
     private JButton cancelButton = new JButton("Batal");
 
     private List<DataBuku> listDataBuku;
@@ -37,35 +43,48 @@ public class TambahBuku extends JDialog implements ActionListener {
     private boolean submit;
     private Object[] bukuBaru;
 
-    public TambahBuku(List<DataBuku> listDataBuku, String fileName) {
-        submit = false;
+    public UpdateBuku(Object[] objectsSelected, List<DataBuku> listDataBuku, String fileName, int row) {
+        this.row = row;
+        id = (Integer) objectsSelected[0];
+        kodeBuku = (String) objectsSelected[1];
+        judulBuku = (String) objectsSelected[2];
+        penulis = (String) objectsSelected[4];
+        penerbit = (String) objectsSelected[5];
+        tahunTerbit = (String) objectsSelected[6];
+
         this.listDataBuku = listDataBuku;
-        this.file = new File(fileName);
+        file = new File(fileName);
+
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setIconImage(appIcon.getImage());
-        this.setTitle("Tambah Buku");
+        this.setTitle("Update Buku");
 
         textFieldKodeBuku = new JTextField();
         textFieldKodeBuku.setFont(new Font("Calibri", Font.PLAIN, 16));
         textFieldKodeBuku.setPreferredSize(new Dimension(200, 30));
         textFieldKodeBuku.setMargin(new Insets(0, 5, 0, 5));
+        textFieldKodeBuku.setText(kodeBuku);
 
         textFieldJudulBuku = new JTextField();
         textFieldJudulBuku.setFont(new Font("Calibri", Font.PLAIN, 16));
         textFieldJudulBuku.setMargin(new Insets(0, 5, 0, 5));
+        textFieldJudulBuku.setText(judulBuku);
 
         textFieldPenulis = new JTextField();
         textFieldPenulis.setFont(new Font("Calibri", Font.PLAIN, 16));
         textFieldPenulis.setMargin(new Insets(0, 5, 0, 5));
+        textFieldPenulis.setText(penulis);
 
         textFieldPenerbit = new JTextField();
         textFieldPenerbit.setFont(new Font("Calibri", Font.PLAIN, 16));
         textFieldPenerbit.setMargin(new Insets(0, 5, 0, 5));
+        textFieldPenerbit.setText(penerbit);
 
         textFieldTahunTerbit = new JTextField();
         textFieldTahunTerbit.setFont(new Font("Calibri", Font.PLAIN, 16));
         textFieldTahunTerbit.setMargin(new Insets(0, 5, 0, 5));
         textFieldTahunTerbit.setPreferredSize(new Dimension(400, textFieldTahunTerbit.getHeight()));
+        textFieldTahunTerbit.setText(tahunTerbit);
 
         JPanel textFieldPanel = new JPanel();
         textFieldPanel.setBackground(Color.WHITE);
@@ -99,8 +118,8 @@ public class TambahBuku extends JDialog implements ActionListener {
         labelPanel.add(label4);
         labelPanel.add(label5);
 
-        submitButton.setFocusable(false);
-        submitButton.addActionListener(this);
+        updateButton.setFocusable(false);
+        updateButton.addActionListener(this);
         cancelButton.setFocusable(false);
         cancelButton.addActionListener(this);
 
@@ -115,7 +134,7 @@ public class TambahBuku extends JDialog implements ActionListener {
         buttonContainer.setBackground(Color.WHITE);
         buttonContainer.setOpaque(true);
         buttonContainer.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        buttonContainer.add(submitButton);
+        buttonContainer.add(updateButton);
         buttonContainer.add(cancelButton);
 
         container = new JPanel();
@@ -133,42 +152,8 @@ public class TambahBuku extends JDialog implements ActionListener {
         this.add(container);
         this.pack();
         this.setVisible(true);
-    }
 
-    public JTextField getTextFieldKodeBuku() {
-        return textFieldKodeBuku;
-    }
-
-    public void setTextFieldKodeBuku(JTextField textFieldKodeBuku) {
-        this.textFieldKodeBuku = textFieldKodeBuku;
-    }
-
-    public JTextField getTextFieldJudulBuku() {
-        return textFieldJudulBuku;
-    }
-
-    public void setTextFieldJudulBuku(JTextField textFieldJudulBuku) {
-        this.textFieldJudulBuku = textFieldJudulBuku;
-    }
-
-    public JTextField getTextFieldPenulis() {
-        return textFieldPenulis;
-    }
-
-    public void setTextFieldPenulis(JTextField textFieldPenulis) {
-        this.textFieldPenulis = textFieldPenulis;
-    }
-
-    public JTextField getTextFieldPenerbit() {
-        return textFieldPenerbit;
-    }
-
-    public void setTextFieldPenerbit(JTextField textFieldPenerbit) {
-        this.textFieldPenerbit = textFieldPenerbit;
-    }
-
-    public JTextField getTextFieldTahunTerbit() {
-        return textFieldTahunTerbit;
+        this.setVisible(true);
     }
 
     public void setListDataBuku(List<DataBuku> listDataBuku) {
@@ -193,9 +178,13 @@ public class TambahBuku extends JDialog implements ActionListener {
     }
 
     public boolean isKodeBukuExist(List<DataBuku> listDataBuku) {
-        for (DataBuku buku : listDataBuku) {
-            if (buku.getKodeBuku().contentEquals(textFieldKodeBuku.getText())) {
-                return true;
+        if (textFieldKodeBuku.getText().contentEquals(kodeBuku)) {
+            return false;
+        } else {
+            for (DataBuku buku : listDataBuku) {
+                if (buku.getKodeBuku().contentEquals(textFieldKodeBuku.getText())) {
+                    return true;
+                }
             }
         }
         return false;
@@ -208,15 +197,9 @@ public class TambahBuku extends JDialog implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == submitButton) {
-            int id;
-            String kodeBuku, judulBuku, penulis, penerbit, tahunTerbit;
-            if (listDataBuku.isEmpty()) {
-                id = 1;
-            } else {
-                id = listDataBuku.get(listDataBuku.size() - 1).getId() + 1;
-            }
-            kodeBuku = textFieldKodeBuku.getText();
+        if (e.getSource() == updateButton) {
+            String kodeBukuTemp;
+            kodeBukuTemp = textFieldKodeBuku.getText();
             judulBuku = textFieldJudulBuku.getText();
             penulis = textFieldPenulis.getText();
             penerbit = textFieldPenerbit.getText();
@@ -233,19 +216,29 @@ public class TambahBuku extends JDialog implements ActionListener {
             boolean sukses = ((validasiKB && validasiThn && validasiJudul && validasiPenerbit && validasiPenulis) && validasiBuku);
 
             if (sukses) {
-                DataBuku buku = new DataBuku(id, kodeBuku, judulBuku, penulis, penerbit, tahunTerbit);
-                bukuBaru = new Object[]{String.valueOf(id), kodeBuku, judulBuku, buku.getJenisBuku(), penulis, penerbit, tahunTerbit};
-
-                listDataBuku.add(buku);
-
-                try {
-                    FileWriter fileWriter = new FileWriter(file, true);
-                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                    bufferedWriter.write((file.length() != 0 ? "\n" : "") + buku.getTxtFormat());
-                    bufferedWriter.close();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                kodeBuku = kodeBukuTemp;
+                for (DataBuku buku : listDataBuku) {
+                    if (buku.getId() == id) {
+                        buku.setKodeBuku(kodeBuku);
+                        buku.setJudulBuku(judulBuku);
+                        buku.setPenulis(penulis);
+                        buku.setPenerbit(penerbit);
+                        buku.setTahunTerbit(tahunTerbit);
+                        bukuBaru = new Object[] {
+                                id,
+                                kodeBuku,
+                                judulBuku,
+                                buku.getJenisBuku(),
+                                penulis,
+                                penerbit,
+                                tahunTerbit
+                        };
+                        break;
+                    }
                 }
+
+                Berkas.update(file.getPath(), listDataBuku);
+
                 this.dispose();
                 submit = true;
             } else {
@@ -271,5 +264,9 @@ public class TambahBuku extends JDialog implements ActionListener {
 
     public Object[] getBukuBaru() {
         return bukuBaru;
+    }
+
+    public int getRow() {
+        return row;
     }
 }

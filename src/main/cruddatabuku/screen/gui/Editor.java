@@ -51,6 +51,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     JTextField pencarian;
 
     TambahBuku tambahBukuDialog;
+    UpdateBuku updateBukuDialog;
 
     public Editor(File file) {
         this.fileName = file.getPath();
@@ -245,6 +246,20 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                 JOptionPane.showMessageDialog(this, "Seleksi / Pilih terlebih dahulu data yang ingin dihapus", "Hapus Data", JOptionPane.INFORMATION_MESSAGE);
             }
         }
+
+        if (e.getSource() == btnUpdateBuku) {
+            if (table.getSelectedRows().length == 1) {
+                int rS = table.getSelectedRow(); // row selected
+                Object[] objectsSelected = new Object[7];
+                for (int i = 0; i < objectsSelected.length; i++) {
+                    objectsSelected[i] = defaultTableModel.getValueAt(rS, i);
+                }
+
+                updateBukuDialog = new UpdateBuku(objectsSelected, listDataBuku, fileName, rS);
+                updateBukuDialog.setLocationRelativeTo(this);
+
+            }
+        }
     }
 
     @Override
@@ -321,14 +336,33 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     public void windowActivated(WindowEvent e) {
 
         if (e.getOppositeWindow() != null) {
-            try {
-                if (e.getOppositeWindow().getClass().getName().contains("TambahBuku")) {
-                    if (tambahBukuDialog.isSubmit()) {
-                        defaultTableModel.addRow(tambahBukuDialog.getBukuBaru());
-                    }
+            if (e.getOppositeWindow().getClass().getName().contains("TambahBuku")) {
+                if (tambahBukuDialog.isSubmit()) {
+                    defaultTableModel.addRow(tambahBukuDialog.getBukuBaru());
                 }
-            } catch (NullPointerException exception) {
-                System.out.println("Null Pointer Exception");
+            } else if (e.getOppositeWindow().getClass().getName().contains("UpdateBuku")) {
+                if (updateBukuDialog.isSubmit()) {
+                    Object id, kodeBuku, judulBuku, jenisBuku, penulis, penerbit, tahunTerbit;
+                    int row;
+
+                    row = updateBukuDialog.getRow();
+
+                    id = updateBukuDialog.getBukuBaru()[0];
+                    kodeBuku = updateBukuDialog.getBukuBaru()[1];
+                    judulBuku = updateBukuDialog.getBukuBaru()[2];
+                    jenisBuku = updateBukuDialog.getBukuBaru()[3];
+                    penulis = updateBukuDialog.getBukuBaru()[4];
+                    penerbit = updateBukuDialog.getBukuBaru()[5];
+                    tahunTerbit = updateBukuDialog.getBukuBaru()[6];
+
+                    defaultTableModel.setValueAt(id, row, 0);
+                    defaultTableModel.setValueAt(kodeBuku, row, 1);
+                    defaultTableModel.setValueAt(judulBuku, row, 2);
+                    defaultTableModel.setValueAt(jenisBuku, row, 3);
+                    defaultTableModel.setValueAt(penulis, row, 4);
+                    defaultTableModel.setValueAt(penerbit, row, 5);
+                    defaultTableModel.setValueAt(tahunTerbit, row, 6);
+                }
             }
         }
     }

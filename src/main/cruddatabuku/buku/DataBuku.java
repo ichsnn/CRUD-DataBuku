@@ -51,6 +51,7 @@ public class DataBuku {
 
     public void setKodeBuku(String kodeBuku) {
         this.kodeBuku = kodeBuku;
+        this.setJenisBuku(kodeBuku);
     }
 
     public String getJudulBuku() {
