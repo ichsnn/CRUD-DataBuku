@@ -18,7 +18,9 @@ import java.util.List;
 
 import static main.cruddatabuku.util.Berkas.memuatDataBuku;
 
-public class MainMenu extends JFrame implements ActionListener, DocumentListener {
+public class Editor extends JFrame implements ActionListener, DocumentListener {
+    private String fileName;
+
     JButton btnTambahBuku = new JButton("Tambah Buku");
     JButton btnUpdateBuku = new JButton("Update Buku");
     JButton btnHapusBuku = new JButton("Hapus Buku");
@@ -44,7 +46,8 @@ public class MainMenu extends JFrame implements ActionListener, DocumentListener
 
     JTextField pencarian;
 
-    public MainMenu() {
+    public Editor(File file) {
+        this.fileName = file.getPath();
         // Button
         btnTambahBuku.setFocusable(false);
         btnTambahBuku.addActionListener(this);
@@ -156,13 +159,18 @@ public class MainMenu extends JFrame implements ActionListener, DocumentListener
         containerPanel.add(topPanel, BorderLayout.NORTH);
         containerPanel.add(bottomPanel, BorderLayout.CENTER);
 
+        JLabel createdBy = new JLabel("Dibuat Oleh : Ichsan Nulmuhlis", JLabel.CENTER);
+        createdBy.setBorder(new EmptyBorder(0, 0, 5, 0));
+        createdBy.setFont(new Font("Calibri", Font.PLAIN, createdBy.getFont().getSize()));
+        createdBy.setBackground(Color.WHITE);
+        createdBy.setOpaque(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.setMinimumSize(new Dimension(700, 400));
         this.setBackground(Color.WHITE);
         this.getContentPane().setBackground(Color.WHITE);
         this.add(containerPanel, BorderLayout.CENTER);
-        this.add(new Label("Dibuat oleh : Ichsan Nulmuhlis", Label.CENTER), BorderLayout.SOUTH);
+        this.add(createdBy, BorderLayout.SOUTH);
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -192,8 +200,16 @@ public class MainMenu extends JFrame implements ActionListener, DocumentListener
 
     }
 
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
     public void loadData() {
-        File file = new File("data\\dataBuku.txt");
+        File file = new File(fileName);
         boolean sukses = memuatDataBuku(file, listDataBuku);
         if (sukses) {
             for (DataBuku buku : listDataBuku) {
