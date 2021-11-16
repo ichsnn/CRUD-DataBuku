@@ -140,7 +140,7 @@ public class GUIApp extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == bukaButton) {
-            Editor editor = new Editor(file);
+            new Editor(file);
             this.dispose();
         }
 

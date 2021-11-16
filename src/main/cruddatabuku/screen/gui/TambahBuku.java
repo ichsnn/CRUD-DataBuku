@@ -18,22 +18,18 @@ import java.util.regex.Pattern;
 import static main.cruddatabuku.util.Kamus.*;
 
 public class TambahBuku extends JDialog implements ActionListener {
+    private final JButton submitButton = new JButton("Submit");
+    private final JButton cancelButton = new JButton("Batal");
+    private final File file;
     JPanel container;
     JPanel inputContainer;
     JPanel buttonContainer;
-
-    private JTextField textFieldKodeBuku;
-    private JTextField textFieldJudulBuku;
-    private JTextField textFieldPenulis;
-    private JTextField textFieldPenerbit;
-    private JTextField textFieldTahunTerbit;
-
-    private JButton submitButton = new JButton("Submit");
-    private JButton cancelButton = new JButton("Batal");
-
+    private final JTextField textFieldKodeBuku;
+    private final JTextField textFieldJudulBuku;
+    private final JTextField textFieldPenulis;
+    private final JTextField textFieldPenerbit;
+    private final JTextField textFieldTahunTerbit;
     private List<DataBuku> listDataBuku;
-    private File file;
-
     private boolean submit;
     private Object[] bukuBaru;
 
@@ -135,52 +131,12 @@ public class TambahBuku extends JDialog implements ActionListener {
         this.setVisible(true);
     }
 
-    public JTextField getTextFieldKodeBuku() {
-        return textFieldKodeBuku;
-    }
-
-    public void setTextFieldKodeBuku(JTextField textFieldKodeBuku) {
-        this.textFieldKodeBuku = textFieldKodeBuku;
-    }
-
-    public JTextField getTextFieldJudulBuku() {
-        return textFieldJudulBuku;
-    }
-
-    public void setTextFieldJudulBuku(JTextField textFieldJudulBuku) {
-        this.textFieldJudulBuku = textFieldJudulBuku;
-    }
-
-    public JTextField getTextFieldPenulis() {
-        return textFieldPenulis;
-    }
-
-    public void setTextFieldPenulis(JTextField textFieldPenulis) {
-        this.textFieldPenulis = textFieldPenulis;
-    }
-
-    public JTextField getTextFieldPenerbit() {
-        return textFieldPenerbit;
-    }
-
-    public void setTextFieldPenerbit(JTextField textFieldPenerbit) {
-        this.textFieldPenerbit = textFieldPenerbit;
-    }
-
-    public JTextField getTextFieldTahunTerbit() {
-        return textFieldTahunTerbit;
-    }
-
-    public void setListDataBuku(List<DataBuku> listDataBuku) {
-        this.listDataBuku = listDataBuku;
-    }
-
     public List<DataBuku> getListDataBuku() {
         return listDataBuku;
     }
 
-    public void setTextFieldTahunTerbit(JTextField textFieldTahunTerbit) {
-        this.textFieldTahunTerbit = textFieldTahunTerbit;
+    public void setListDataBuku(List<DataBuku> listDataBuku) {
+        this.listDataBuku = listDataBuku;
     }
 
     public boolean isSubmit() {
@@ -222,7 +178,7 @@ public class TambahBuku extends JDialog implements ActionListener {
             penerbit = textFieldPenerbit.getText();
             tahunTerbit = textFieldTahunTerbit.getText();
 
-            boolean validasiKB, validasiThn, validasiBuku, validasiJudul, validasiPenulis, validasiPenerbit, validasiSemuaInput;
+            boolean validasiKB, validasiThn, validasiBuku, validasiJudul, validasiPenulis, validasiPenerbit;
             validasiKB = isInputValid(textFieldKodeBuku.getText(), P_KODEBUKU);
             validasiThn = isInputValid(textFieldTahunTerbit.getText(), P_TAHUNTERBIT);
             validasiBuku = !isKodeBukuExist(listDataBuku);

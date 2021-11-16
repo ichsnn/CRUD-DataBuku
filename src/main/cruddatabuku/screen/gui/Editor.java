@@ -23,7 +23,7 @@ import static main.cruddatabuku.util.Berkas.memuatDataBuku;
 import static main.cruddatabuku.util.Kamus.appIcon;
 
 public class Editor extends JFrame implements ActionListener, DocumentListener, WindowListener {
-    private String fileName;
+    private final String fileName;
 
     JButton btnTambahBuku = new JButton("Tambah Buku");
     JButton btnUpdateBuku = new JButton("Update Buku");
@@ -295,14 +295,6 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     @Override
     public void changedUpdate(DocumentEvent e) {
 
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getFileName() {
-        return fileName;
     }
 
     public void loadData() {

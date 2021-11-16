@@ -5,40 +5,36 @@ import main.cruddatabuku.util.Berkas;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static main.cruddatabuku.util.Berkas.updateData;
 import static main.cruddatabuku.util.Kamus.*;
 
 public class UpdateBuku extends JDialog implements ActionListener {
-    private int id, row;
+    private final int id;
+    private final int row;
     private String kodeBuku, judulBuku, penulis, penerbit, tahunTerbit;
 
     JPanel container;
     JPanel inputContainer;
     JPanel buttonContainer;
 
-    private JTextField textFieldKodeBuku;
-    private JTextField textFieldJudulBuku;
-    private JTextField textFieldPenulis;
-    private JTextField textFieldPenerbit;
-    private JTextField textFieldTahunTerbit;
+    JTextField textFieldKodeBuku;
+    JTextField textFieldJudulBuku;
+    JTextField textFieldPenulis;
+    JTextField textFieldPenerbit;
+    JTextField textFieldTahunTerbit;
 
-    private JButton updateButton = new JButton("Update");
-    private JButton cancelButton = new JButton("Batal");
+    private final JButton updateButton = new JButton("Update");
+    private final JButton cancelButton = new JButton("Batal");
 
     private List<DataBuku> listDataBuku;
-    private File file;
+    private final File file;
 
     private boolean submit;
     private Object[] bukuBaru;
@@ -164,10 +160,6 @@ public class UpdateBuku extends JDialog implements ActionListener {
         return listDataBuku;
     }
 
-    public void setTextFieldTahunTerbit(JTextField textFieldTahunTerbit) {
-        this.textFieldTahunTerbit = textFieldTahunTerbit;
-    }
-
     public boolean isSubmit() {
         return submit;
     }
@@ -205,7 +197,7 @@ public class UpdateBuku extends JDialog implements ActionListener {
             penerbit = textFieldPenerbit.getText();
             tahunTerbit = textFieldTahunTerbit.getText();
 
-            boolean validasiKB, validasiThn, validasiBuku, validasiJudul, validasiPenulis, validasiPenerbit, validasiSemuaInput;
+            boolean validasiKB, validasiThn, validasiBuku, validasiJudul, validasiPenulis, validasiPenerbit;
             validasiKB = isInputValid(textFieldKodeBuku.getText(), P_KODEBUKU);
             validasiThn = isInputValid(textFieldTahunTerbit.getText(), P_TAHUNTERBIT);
             validasiBuku = !isKodeBukuExist(listDataBuku);
