@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import static main.cruddatabuku.util.Kamus.appIcon;
+
 public class GUIApp extends JFrame implements ActionListener {
     JFileChooser fileChooser;
     JButton fileChooserButton;
@@ -30,13 +32,13 @@ public class GUIApp extends JFrame implements ActionListener {
 
         ImageIcon folderIcon = new ImageIcon("./assets/folder-open.png");
         Image image = folderIcon.getImage();
-        Image newImg = image.getScaledInstance(18, 18, Image.SCALE_SMOOTH);
+        Image newImg = image.getScaledInstance(16, 16, Image.SCALE_SMOOTH);
         folderIcon = new ImageIcon(newImg);
 
         fileChooserButton = new JButton();
         fileChooserButton.setFocusable(false);
         fileChooserButton.setIcon(folderIcon);
-        fileChooserButton.setBounds(0, 0, 18, 18);
+        fileChooserButton.setBounds(0, 0, 16, 16);
         fileChooserButton.addActionListener(this);
 
         file = new File("./data/dataBuku.txt");
@@ -46,6 +48,7 @@ public class GUIApp extends JFrame implements ActionListener {
         textField.setPreferredSize(new Dimension(100, textField.getHeight()));
         textField.setText(file.getPath());
         textField.setMargin(new Insets(5, 10, 5, 10));
+        textField.setCaretPosition(file.getPath().length());
 
         bukaButton = new JButton("Buka");
         keluarButton = new JButton("Keluar");
@@ -88,6 +91,9 @@ public class GUIApp extends JFrame implements ActionListener {
         createdBy.setFont(new Font("Calibri", Font.PLAIN, createdBy.getFont().getSize()));
         createdBy.setBackground(Color.WHITE);
         createdBy.setOpaque(true);
+
+        this.setIconImage(appIcon.getImage());
+        this.setTitle("Aplikasi Pengelola Daftar Buku");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLayout(new BorderLayout());
@@ -103,7 +109,7 @@ public class GUIApp extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == fileChooserButton) {
-            getSystemUI(UIManager.getSystemLookAndFeelClassName());
+            //getSystemUI(UIManager.getSystemLookAndFeelClassName());
 
             fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("./data"));
@@ -128,7 +134,7 @@ public class GUIApp extends JFrame implements ActionListener {
                 textField.setText(file.getPath());
             }
 
-            getSystemUI(UIManager.getCrossPlatformLookAndFeelClassName());
+            //getSystemUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
 
         if (e.getSource() == bukaButton) {
@@ -141,7 +147,7 @@ public class GUIApp extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == buatFileButton) {
-            getSystemUI(UIManager.getSystemLookAndFeelClassName());
+            //getSystemUI(UIManager.getSystemLookAndFeelClassName());
 
             JFileChooser createFile = new JFileChooser();
             createFile.setFileFilter(new FileFilter() {
@@ -191,7 +197,7 @@ public class GUIApp extends JFrame implements ActionListener {
             } while (!notReapet);
 
 
-            getSystemUI(UIManager.getCrossPlatformLookAndFeelClassName());
+            //getSystemUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
     }
 

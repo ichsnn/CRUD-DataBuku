@@ -4,6 +4,7 @@ Kamus.java | digunakan untuk menampung semua variable yang sering digunakan.
 
 package main.cruddatabuku.util;
 
+import javax.swing.*;
 import java.util.regex.Pattern;
 
 public interface Kamus {
@@ -19,6 +20,8 @@ public interface Kamus {
     // Regex | Pattern
     Pattern P_KODEBUKU = Pattern.compile("^KB[\\d]{3}\\d+$");
     Pattern P_TAHUNTERBIT = Pattern.compile("^[\\d]{4}$");
+    Pattern P_STRING = Pattern.compile("^(?!" + PEMBATAS +  ").*");
+
     String[][] KODE_JENISBUKU = {
             {"^0[0-9]{2,2}$", "Karya Umum"},
             {"^1[0-9]{2,2}$", "Filsafat"},
@@ -60,5 +63,8 @@ public interface Kamus {
     static void printPressEnter(){
         System.out.println("Tekan [Enter] untuk kemabali...");
     }
+
+    // App Icon
+    ImageIcon appIcon = new ImageIcon("./assets/icon.png");
 
 }

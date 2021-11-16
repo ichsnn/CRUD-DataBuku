@@ -119,7 +119,7 @@ public class DataBuku {
         return (id + "#" + kodeBuku + "#" + judulBuku + "#" + penulis + "#" + penerbit + "#" + tahunTerbit);
     }
 
-    public String[] getStringFormat() {
-        return new String[]{String.valueOf(getId()), getKodeBuku(), getJudulBuku(), getJenisBuku(), getPenulis(), getPenerbit(), getTahunTerbit()};
+    public Object[] geetArrayFormat() {
+        return new Object[]{getId(), getKodeBuku(), getJudulBuku(), getJenisBuku(), getPenulis(), getPenerbit(), getTahunTerbit()};
     }
 }
