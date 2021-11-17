@@ -49,11 +49,11 @@ public interface Kamus {
     }
 
     static void printUpdateSuccess() {
-        System.out.print("Update data berhasil");
+        System.out.println("Update data berhasil");
     }
 
     static void printIdNotFound() {
-        System.out.print("ID tidak ditemukan!");
+        System.out.println("ID tidak ditemukan!");
     }
 
     static void clearScreen() {

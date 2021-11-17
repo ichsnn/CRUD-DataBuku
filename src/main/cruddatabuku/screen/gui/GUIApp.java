@@ -104,8 +104,6 @@ public class GUIApp extends JFrame implements ActionListener {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-
-        //new MainMenu();
     }
 
     @Override
@@ -152,6 +150,7 @@ public class GUIApp extends JFrame implements ActionListener {
             //getSystemUI(UIManager.getSystemLookAndFeelClassName());
 
             JFileChooser createFile = new JFileChooser();
+            createFile.setCurrentDirectory(new File("./"));
             createFile.setFileFilter(new FileFilter() {
                 @Override
                 public boolean accept(File f) {
@@ -166,6 +165,7 @@ public class GUIApp extends JFrame implements ActionListener {
                 public String getDescription() {
                     return "Flat File (*.txt)";
                 }
+
             });
             createFile.setCurrentDirectory(new File("./data"));
             createFile.setDialogTitle("Crate New File");

@@ -123,11 +123,14 @@ public class TambahBuku extends JDialog implements ActionListener {
         container.add(inputContainer, BorderLayout.CENTER);
         container.add(buttonContainer, BorderLayout.SOUTH);
 
+        this.getRootPane().setDefaultButton(submitButton);
         this.setBackground(Color.WHITE);
         this.setResizable(false);
         this.getContentPane().setBackground(Color.WHITE);
         this.add(container);
+        this.setModalityType(ModalityType.APPLICATION_MODAL);
         this.pack();
+        this.setLocationRelativeTo(this.getParent());
         this.setVisible(true);
     }
 

@@ -142,13 +142,14 @@ public class UpdateBuku extends JDialog implements ActionListener {
         container.add(inputContainer, BorderLayout.CENTER);
         container.add(buttonContainer, BorderLayout.SOUTH);
 
+        this.getRootPane().setDefaultButton(updateButton);
         this.setBackground(Color.WHITE);
         this.setResizable(false);
         this.getContentPane().setBackground(Color.WHITE);
         this.add(container);
+        this.setModalityType(ModalityType.APPLICATION_MODAL);
         this.pack();
-        this.setVisible(true);
-
+        this.setLocationRelativeTo(this.getParent());
         this.setVisible(true);
     }
 

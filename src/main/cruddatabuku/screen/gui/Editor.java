@@ -62,7 +62,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         sukses = memuatDataBuku(file, listDataBuku);
 
         if (!sukses) {
-            this.setTitle("Aplikasi Pengelola Daftar Buku (ERROR)");
+            this.setTitle("Aplikasi Pengelola Daftar Buku - ERROR!");
         } else {
             this.setTitle("Aplikasi Pengelola Daftar Buku (" + fileName + ")");
         }
@@ -216,51 +216,10 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnTambahBuku) {
             tambahBukuDialog = new TambahBuku(listDataBuku, fileName);
-            tambahBukuDialog.setLocationRelativeTo(this);
         }
 
         if (e.getSource() == btnHapusBuku) {
-            if (table.getSelectedRows().length != 0) {
-                int respon = JOptionPane.showConfirmDialog(this, "Apakah anda ingin menghapus data ini ?", "Hapus Data", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (respon == 0) {
-                    String[] index = new String[table.getSelectedRows().length];
-                    int[] rowIndexToRemove = new int[table.getSelectedRows().length];
-                    int i = 0;
-                    for (int data : table.getSelectedRows()) {
-                        index[i] = String.valueOf(table.getValueAt(data, 0));
-                        rowIndexToRemove[i] = data;
-                        i++;
-                    }
-
-                    for (int row : rowIndexToRemove) {
-                        System.out.print(row + " ");
-                    }
-
-                    System.out.println();
-                    System.out.println();
-
-                    for (int k = defaultTableModel.getRowCount() - 1; k >= 0; k--) {
-                        /* Salah karena hanya mengapus baris berdasarkan seleksi yang terurut
-                        for (int l = rowIndexToRemove.length - 1; l >= 0; l--) {
-                            if (k == l) {
-                                defaultTableModel.removeRow(k);
-                            }
-                        }
-                         */
-                        for (int row : rowIndexToRemove) {
-                            if (k == row) {
-                                defaultTableModel.removeRow(k);
-                            }
-                        }
-                    }
-
-                    for (String str : index) {
-                        deleteData(fileName, listDataBuku, Integer.parseInt(str));
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Seleksi / Pilih terlebih dahulu data yang ingin dihapus", "Hapus Data", JOptionPane.INFORMATION_MESSAGE);
-            }
+            hapusBuku();
         }
 
         if (e.getSource() == btnUpdateBuku) {
@@ -272,9 +231,45 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                 }
 
                 updateBukuDialog = new UpdateBuku(objectsSelected, listDataBuku, fileName, rS);
-                updateBukuDialog.setLocationRelativeTo(this);
 
             }
+        }
+    }
+
+    private void hapusBuku() {
+        if (table.getSelectedRows().length != 0) {
+            int respon = JOptionPane.showConfirmDialog(this, "Apakah anda ingin menghapus data ini ?", "Hapus Data", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (respon == 0) {
+                String[] index = new String[table.getSelectedRows().length];
+                int[] rowIndexToRemove = new int[table.getSelectedRows().length];
+                int i = 0;
+                for (int data : table.getSelectedRows()) {
+                    index[i] = String.valueOf(table.getValueAt(data, 0));
+                    rowIndexToRemove[i] = data;
+                    i++;
+                }
+
+                for (int k = defaultTableModel.getRowCount() - 1; k >= 0; k--) {
+                    /* Salah karena hanya mengapus baris berdasarkan seleksi yang terurut
+                    for (int l = rowIndexToRemove.length - 1; l >= 0; l--) {
+                        if (k == l) {
+                            defaultTableModel.removeRow(k);
+                        }
+                    }
+                     */
+                    for (int row : rowIndexToRemove) {
+                        if (k == row) {
+                            defaultTableModel.removeRow(k);
+                        }
+                    }
+                }
+
+                for (String str : index) {
+                    deleteData(fileName, listDataBuku, Integer.parseInt(str));
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleksi / Pilih terlebih dahulu data yang ingin dihapus", "Hapus Data", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
