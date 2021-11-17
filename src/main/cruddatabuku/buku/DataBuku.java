@@ -3,8 +3,8 @@ package main.cruddatabuku.buku;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static main.cruddatabuku.util.Kamus.KODE_JENISBUKU;
-import static main.cruddatabuku.util.Kamus.PEMBATAS;
+import static main.cruddatabuku.util.Library.KODE_JENISBUKU;
+import static main.cruddatabuku.util.Library.PEMBATAS;
 
 public class DataBuku {
     private int id;

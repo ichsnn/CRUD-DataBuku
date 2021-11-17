@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import static main.cruddatabuku.util.Berkas.deleteData;
 import static main.cruddatabuku.util.Berkas.deleteSemuaData;
-import static main.cruddatabuku.util.Kamus.clearScreen;
+import static main.cruddatabuku.util.Library.clearScreen;
 
 public class HapusBuku {
     public HapusBuku(List<DataBuku> listDataBuku, String fileName) {

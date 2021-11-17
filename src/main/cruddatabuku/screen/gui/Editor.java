@@ -2,6 +2,7 @@ package main.cruddatabuku.screen.gui;
 
 import main.cruddatabuku.buku.DataBuku;
 import main.cruddatabuku.screen.gui.component.Button;
+import main.cruddatabuku.screen.gui.component.HelpJenisBuku;
 import main.cruddatabuku.screen.gui.component.MenuBar;
 
 import javax.swing.*;
@@ -25,7 +26,7 @@ import java.util.List;
 import static main.cruddatabuku.screen.gui.component.UIManagerMethod.setUI;
 import static main.cruddatabuku.util.Berkas.deleteData;
 import static main.cruddatabuku.util.Berkas.memuatDataBuku;
-import static main.cruddatabuku.util.Kamus.appIcon;
+import static main.cruddatabuku.util.Library.appIcon;
 
 public class Editor extends JFrame implements ActionListener, DocumentListener, WindowListener {
     private final String fileName;
@@ -202,6 +203,9 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         // edit menu
         menuBar.selectAll.addActionListener(this);
         menuBar.refresTable.addActionListener(this);
+        // help menu
+        menuBar.helpGuide.addActionListener(this);
+        menuBar.jenisBuku.addActionListener(this);
 
         this.setJMenuBar(menuBar);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -359,6 +363,14 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                 defaultTableModel.addRow(buku.geetArrayFormat());
             }
             defaultTableModel.fireTableDataChanged();
+        }
+
+        if (e.getSource() == menuBar.helpGuide) {
+            new HelpGuide();
+        }
+
+        if (e.getSource() == menuBar.jenisBuku) {
+            new HelpJenisBuku();
         }
 
 

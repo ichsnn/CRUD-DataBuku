@@ -1,23 +1,27 @@
 package main.cruddatabuku.screen.gui.component;
 
 import javax.swing.*;
-import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import java.awt.*;
 
 public class MenuBar extends JMenuBar {
     public JMenu fileMenu = new JMenu("File");
     public JMenu editMenu = new JMenu("Edit");
+    public JMenu helpMenu = new JMenu("Bantuan");
 
     // for fileMenu
-    public JMenuItem createItem = new JMenuItem("Create");
-    public JMenuItem loadItem = new JMenuItem("Load");
-    public JMenuItem closeItem = new JMenuItem("Close");
-    public JMenuItem exitItem = new JMenuItem("Exit");
+    public JMenuItem createItem = new JMenuItem("Buat");
+    public JMenuItem loadItem = new JMenuItem("Buka");
+    public JMenuItem closeItem = new JMenuItem("Tutup");
+    public JMenuItem exitItem = new JMenuItem("Keluar");
 
     // for editMenu
-    public JMenuItem selectAll = new JMenuItem("Select All");
+    public JMenuItem selectAll = new JMenuItem("Seleksi Semua");
     public JMenuItem refresTable = new JMenuItem("Refresh");
+
+    // for helpHemu
+    public JMenuItem helpGuide = new JMenuItem("Petunjuk");
+    public JMenuItem jenisBuku = new JMenuItem("Jenis Buku");
 
     public MenuBar() {
         this.setUI(new BasicMenuBarUI());
@@ -26,6 +30,7 @@ public class MenuBar extends JMenuBar {
 
         this.add(fileMenu);
         this.add(editMenu);
+        this.add(helpMenu);
 
         fileMenu.add(loadItem);
         fileMenu.add(createItem);
@@ -34,6 +39,9 @@ public class MenuBar extends JMenuBar {
 
         editMenu.add(selectAll);
         editMenu.add(refresTable);
+
+        helpMenu.add(helpGuide);
+        helpMenu.add(jenisBuku);
 
         for (int i = 0; i < this.getMenuCount(); i++) {
             this.getMenu(i).setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -47,7 +55,9 @@ public class MenuBar extends JMenuBar {
             editMenu.getItem(i).setFont(new Font("Dialog", Font.PLAIN, 12));
         }
 
-        this.add(fileMenu);
-        this.add(editMenu);
+        for (int i = 0; i < helpMenu.getItemCount(); i++) {
+            helpMenu.getItem(i).setFont(new Font("Dialog", Font.PLAIN, 12));
+        }
+
     }
 }

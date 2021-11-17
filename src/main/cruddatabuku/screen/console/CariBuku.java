@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static main.cruddatabuku.util.Berkas.tampilData;
-import static main.cruddatabuku.util.Kamus.*;
+import static main.cruddatabuku.util.Library.*;
 
 public class CariBuku {
     String opsi;

@@ -1,5 +1,5 @@
 /*
-Kamus.java | digunakan untuk menampung semua variable yang sering digunakan.
+Library.java | digunakan untuk menampung semua variable yang sering digunakan.
  */
 
 package main.cruddatabuku.util;
@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public interface Kamus {
+public interface Library {
     char PEMBATAS = ';';
 
     // daftar attribut yang ada pada databuku, digunakan untuk membanding value pada manajemen berkas
@@ -37,7 +37,7 @@ public interface Kamus {
             {"^9[0]{2,2}$", "Sejarah"},
     };
     // App Icon
-    URL appIconURL = Kamus.class.getClassLoader().getResource("assets/icon.png");
+    URL appIconURL = Library.class.getClassLoader().getResource("assets/icon.png");
     ImageIcon appIcon = new ImageIcon(Objects.requireNonNull(appIconURL));
 
     static void printExist() {

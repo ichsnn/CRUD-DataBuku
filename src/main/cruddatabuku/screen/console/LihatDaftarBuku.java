@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static main.cruddatabuku.util.Berkas.tampilData;
-import static main.cruddatabuku.util.Kamus.clearScreen;
+import static main.cruddatabuku.util.Library.clearScreen;
 
 public class LihatDaftarBuku {
     public LihatDaftarBuku(List<DataBuku> listDataBuku) {

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 import static main.cruddatabuku.screen.gui.component.UIManagerMethod.setUI;
-import static main.cruddatabuku.util.Kamus.appIcon;
+import static main.cruddatabuku.util.Library.appIcon;
 
 public class GUIApp extends JFrame implements ActionListener {
     JFileChooser fileChooser;

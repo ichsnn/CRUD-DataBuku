@@ -1,0 +1,9 @@
+Petunjuk Penggunaan
+1. Kode buku merupakan primary key dari table ini,
+    jadi tidak boleh ada kode buku yang sama
+2. Kode buku harus terdiri dari 2 huruf awal "KB",
+    diikuti 1 angka dari 0-9 dan 2 angka 0 dan terakhir
+    angka bebas. Contoh : KB1001
+3. Kode buku menentukan jenis buku yang ditampilkan
+    pada tabel, lihat pada menu bantuan - jenis buku.
+4. Format tahun harus (YYYY). Contoh : 2017

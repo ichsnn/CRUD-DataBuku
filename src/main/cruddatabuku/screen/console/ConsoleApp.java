@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import static main.cruddatabuku.util.Berkas.memuatDataBuku;
-import static main.cruddatabuku.util.Kamus.clearScreen;
-import static main.cruddatabuku.util.Kamus.printError;
+import static main.cruddatabuku.util.Library.clearScreen;
+import static main.cruddatabuku.util.Library.printError;
 
 public class ConsoleApp implements Berkas {
     protected List<DataBuku> listDataBuku = new ArrayList<>();

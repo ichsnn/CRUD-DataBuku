@@ -1,0 +1,11 @@
+Jenis Buku Berdasarkan Kodenya
+KB000 : Karya Umum
+KB100 : Filsafat
+KB200 : Agama
+KB300 : Ilmu Sosial
+KB400 : Bahasa
+KB500 : Ilmu Murni
+KB600 : Pengetahuan Praktis
+KB700 : Kesenian dan Hiburan
+KB800 : Kesusastraan
+KB900 : Sejarah

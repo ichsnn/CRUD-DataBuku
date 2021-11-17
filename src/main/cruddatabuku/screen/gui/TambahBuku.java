@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static main.cruddatabuku.util.Kamus.*;
+import static main.cruddatabuku.util.Library.*;
 
 public class TambahBuku extends JDialog implements ActionListener {
     private final JButton submitButton = new JButton("Submit");

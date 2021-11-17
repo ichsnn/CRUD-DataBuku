@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import static main.cruddatabuku.util.Berkas.updateData;
 import static main.cruddatabuku.util.Berkas.validasiInput;
-import static main.cruddatabuku.util.Kamus.*;
+import static main.cruddatabuku.util.Library.*;
 
 public class UpdateBuku {
     private String jenisAtribut;

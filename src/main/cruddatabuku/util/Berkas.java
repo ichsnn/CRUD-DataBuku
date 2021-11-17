@@ -16,7 +16,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static main.cruddatabuku.util.Kamus.*;
+import static main.cruddatabuku.util.Library.*;
 
 public interface Berkas {
 
