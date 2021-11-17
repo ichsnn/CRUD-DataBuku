@@ -1,2 +1,4 @@
 1#KB0001#Algoritma dan Pemrograman#Rinaldi Munir#Informatika#2017
 2#KB1001#Algoritma dan Pemrograman#Apa#A#2017
+3#KB2002#Pemahaman#Rinaldi #Gramedia#2017
+4#KB0031#OOP#Raynold#Gramedia#2017

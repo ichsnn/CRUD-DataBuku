@@ -190,7 +190,7 @@ public class TambahBuku extends JDialog implements ActionListener {
 
             if (sukses) {
                 DataBuku buku = new DataBuku(id, kodeBuku, judulBuku, penulis, penerbit, tahunTerbit);
-                bukuBaru = new Object[]{String.valueOf(id), kodeBuku, judulBuku, buku.getJenisBuku(), penulis, penerbit, tahunTerbit};
+                bukuBaru = new Object[]{id, kodeBuku, judulBuku, buku.getJenisBuku(), penulis, penerbit, tahunTerbit};
 
                 listDataBuku.add(buku);
 

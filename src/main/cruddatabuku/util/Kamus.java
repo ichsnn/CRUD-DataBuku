@@ -5,6 +5,7 @@ Kamus.java | digunakan untuk menampung semua variable yang sering digunakan.
 package main.cruddatabuku.util;
 
 import javax.swing.*;
+import java.net.URL;
 import java.util.regex.Pattern;
 
 public interface Kamus {
@@ -64,6 +65,6 @@ public interface Kamus {
     }
 
     // App Icon
-    ImageIcon appIcon = new ImageIcon("./assets/icon.png");
+    ImageIcon appIcon = new ImageIcon("assets/icon.png");
 
 }

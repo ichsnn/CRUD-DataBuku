@@ -41,7 +41,7 @@ public class UpdateBuku extends JDialog implements ActionListener {
 
     public UpdateBuku(Object[] objectsSelected, List<DataBuku> listDataBuku, String fileName, int row) {
         this.row = row;
-        id = (Integer) objectsSelected[0];
+        id = (int) objectsSelected[0];
         kodeBuku = (String) objectsSelected[1];
         judulBuku = (String) objectsSelected[2];
         penulis = (String) objectsSelected[4];
