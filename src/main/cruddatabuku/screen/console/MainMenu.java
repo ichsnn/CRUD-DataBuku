@@ -36,7 +36,7 @@ public class MainMenu {
                 case "4":
                     new UpdateBuku(listDataBuku, fileName);
                     break;
-                case  "5":
+                case "5":
                     new HapusBuku(listDataBuku, fileName);
                     break;
             }

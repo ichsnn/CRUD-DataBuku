@@ -18,24 +18,19 @@ import static main.cruddatabuku.util.Kamus.*;
 public class UpdateBuku extends JDialog implements ActionListener {
     private final int id;
     private final int row;
-    private String kodeBuku, judulBuku, penulis, penerbit, tahunTerbit;
-
+    private final JButton updateButton = new JButton("Update");
+    private final JButton cancelButton = new JButton("Batal");
+    private final File file;
     JPanel container;
     JPanel inputContainer;
     JPanel buttonContainer;
-
     JTextField textFieldKodeBuku;
     JTextField textFieldJudulBuku;
     JTextField textFieldPenulis;
     JTextField textFieldPenerbit;
     JTextField textFieldTahunTerbit;
-
-    private final JButton updateButton = new JButton("Update");
-    private final JButton cancelButton = new JButton("Batal");
-
+    private String kodeBuku, judulBuku, penulis, penerbit, tahunTerbit;
     private List<DataBuku> listDataBuku;
-    private final File file;
-
     private boolean submit;
     private Object[] bukuBaru;
 
@@ -153,12 +148,12 @@ public class UpdateBuku extends JDialog implements ActionListener {
         this.setVisible(true);
     }
 
-    public void setListDataBuku(List<DataBuku> listDataBuku) {
-        this.listDataBuku = listDataBuku;
-    }
-
     public List<DataBuku> getListDataBuku() {
         return listDataBuku;
+    }
+
+    public void setListDataBuku(List<DataBuku> listDataBuku) {
+        this.listDataBuku = listDataBuku;
     }
 
     public boolean isSubmit() {
@@ -217,7 +212,7 @@ public class UpdateBuku extends JDialog implements ActionListener {
                         buku.setPenulis(penulis);
                         buku.setPenerbit(penerbit);
                         buku.setTahunTerbit(tahunTerbit);
-                        bukuBaru = new Object[] {
+                        bukuBaru = new Object[]{
                                 id,
                                 kodeBuku,
                                 judulBuku,

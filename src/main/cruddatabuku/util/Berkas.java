@@ -237,13 +237,13 @@ public interface Berkas {
         }
     }
 
-    private static void addTempList(Matcher m, DataBuku buku, List<DataBuku> list) {
+    static void addTempList(Matcher m, DataBuku buku, List<DataBuku> list) {
         if (m.find()) {
             list.add(createBuku(buku.getTxtFormat()));
         }
     }
 
-    private static DataBuku createBuku(String data) {
+    static DataBuku createBuku(String data) {
         String[] dataBuku = data.split(String.valueOf(PEMBATAS));
         if (dataBuku.length == 6) {
             return (new DataBuku(dataBuku[0], dataBuku[1], dataBuku[2], dataBuku[3], dataBuku[4], dataBuku[5]));
@@ -251,7 +251,7 @@ public interface Berkas {
         return null;
     }
 
-    private static boolean validasiData(Scanner readFile) {
+    static boolean validasiData(Scanner readFile) {
         int minPembatas = 0;
         int maxPembatas = 0;
         int counter;

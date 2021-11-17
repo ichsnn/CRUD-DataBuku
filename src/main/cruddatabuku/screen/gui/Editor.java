@@ -20,8 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.cruddatabuku.util.Berkas.deleteData;
-import static main.cruddatabuku.util.Berkas.memuatDataBuku;
+import static main.cruddatabuku.util.Berkas.*;
 import static main.cruddatabuku.util.Kamus.appIcon;
 
 public class Editor extends JFrame implements ActionListener, DocumentListener, WindowListener {
@@ -203,10 +202,14 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         createdBy.setBackground(Color.WHITE);
         createdBy.setOpaque(true);
 
+        // file menu
         menuBar.loadItem.addActionListener(this);
         menuBar.createItem.addActionListener(this);
         menuBar.closeItem.addActionListener(this);
         menuBar.exitItem.addActionListener(this);
+        // edit menu
+        menuBar.selectAll.addActionListener(this);
+        menuBar.refresTable.addActionListener(this);
 
         this.setJMenuBar(menuBar);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -332,6 +335,27 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
 
         if (e.getSource() == menuBar.exitItem) {
             this.dispose();
+        }
+
+        if (e.getSource() == menuBar.selectAll) {
+            table.selectAll();
+        }
+
+        if (e.getSource() == menuBar.refresTable) {
+            listDataBuku.clear();
+            sukses = memuatDataBuku(new File(fileName), listDataBuku);
+
+            for (int i = defaultTableModel.getRowCount() - 1; i >= 0; i--) {
+                defaultTableModel.removeRow(i);
+            }
+
+            for (DataBuku buku : listDataBuku) {
+                if (buku == null) {
+                    break;
+                }
+                defaultTableModel.addRow(buku.geetArrayFormat());
+            }
+            defaultTableModel.fireTableDataChanged();
         }
 
 

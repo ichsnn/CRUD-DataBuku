@@ -36,6 +36,9 @@ public interface Kamus {
             {"^8[0]{2,2}$", "Kesusatraan"},
             {"^9[0]{2,2}$", "Sejarah"},
     };
+    // App Icon
+    URL appIconURL = Kamus.class.getClassLoader().getResource("assets/icon.png");
+    ImageIcon appIcon = new ImageIcon(Objects.requireNonNull(appIconURL));
 
     static void printExist() {
         System.out.println("Data uku sudah ada!");
@@ -62,11 +65,7 @@ public interface Kamus {
         System.out.flush();
     }
 
-    static void printPressEnter(){
+    static void printPressEnter() {
         System.out.println("Tekan [Enter] untuk kemabali...");
     }
-
-    // App Icon
-    URL appIconURL = Kamus.class.getClassLoader().getResource("assets/icon.png");
-    ImageIcon appIcon = new ImageIcon(Objects.requireNonNull(appIconURL));
 }

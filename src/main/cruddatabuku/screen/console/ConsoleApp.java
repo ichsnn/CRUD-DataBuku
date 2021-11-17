@@ -6,7 +6,6 @@ Panggil file ini di main file dengan syntax ' new ConsoleApp(); '
 package main.cruddatabuku.screen.console;
 
 import main.cruddatabuku.buku.DataBuku;
-import main.cruddatabuku.screen.console.MainMenu;
 import main.cruddatabuku.util.Berkas;
 
 import java.io.File;
@@ -45,7 +44,7 @@ public class ConsoleApp implements Berkas {
         System.out.println("Masukkan nama file yang ingin dibuka");
         System.out.print("~ (default : dataBuku.txt) : ");
         open = input.nextLine();
-        if(!open.isEmpty()) {
+        if (!open.isEmpty()) {
             fileName = "data\\" + open;
         }
         // load file sesuai dengan file name yang diinputkan, program akan memeriksa default file name (dataBuku.txt)

@@ -21,14 +21,14 @@ public class TambahBuku extends JDialog implements ActionListener {
     private final JButton submitButton = new JButton("Submit");
     private final JButton cancelButton = new JButton("Batal");
     private final File file;
-    JPanel container;
-    JPanel inputContainer;
-    JPanel buttonContainer;
     private final JTextField textFieldKodeBuku;
     private final JTextField textFieldJudulBuku;
     private final JTextField textFieldPenulis;
     private final JTextField textFieldPenerbit;
     private final JTextField textFieldTahunTerbit;
+    JPanel container;
+    JPanel inputContainer;
+    JPanel buttonContainer;
     private List<DataBuku> listDataBuku;
     private boolean submit;
     private Object[] bukuBaru;

@@ -5,8 +5,9 @@ import main.cruddatabuku.buku.DataBuku;
 import java.util.List;
 import java.util.Scanner;
 
-import static main.cruddatabuku.util.Berkas.*;
-import static main.cruddatabuku.util.Kamus.*;
+import static main.cruddatabuku.util.Berkas.deleteData;
+import static main.cruddatabuku.util.Berkas.deleteSemuaData;
+import static main.cruddatabuku.util.Kamus.clearScreen;
 
 public class HapusBuku {
     public HapusBuku(List<DataBuku> listDataBuku, String fileName) {
