@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import static main.cruddatabuku.util.Kamus.appIcon;
 
@@ -30,7 +31,7 @@ public class GUIApp extends JFrame implements ActionListener {
         labelTitle.setHorizontalAlignment(JLabel.CENTER);
         labelTitle.setFont(new Font("Calibri", Font.BOLD, 24));
 
-        ImageIcon folderIcon = new ImageIcon("./assets/folder-open.png");
+        ImageIcon folderIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("assets/folder-open.png")));
         Image image = folderIcon.getImage();
         Image newImg = image.getScaledInstance(16, 16, Image.SCALE_SMOOTH);
         folderIcon = new ImageIcon(newImg);
@@ -45,7 +46,6 @@ public class GUIApp extends JFrame implements ActionListener {
         label1 = new JLabel("File : ");
         textField = new JTextField();
         //textField.setFont(new Font("Calibri", Font.PLAIN, 16));
-        System.out.println(textField.getFont());
         textField.setBackground(Color.white);
         textField.setPreferredSize(new Dimension(100, 16));
         textField.setText(file.getPath());
@@ -195,7 +195,6 @@ public class GUIApp extends JFrame implements ActionListener {
                 } else if (respon == JFileChooser.CANCEL_OPTION) {
                     notReapet = true;
                 }
-                System.out.println(respon);
             } while (!notReapet);
 
 

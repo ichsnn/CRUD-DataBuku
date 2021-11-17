@@ -6,6 +6,7 @@ package main.cruddatabuku.util;
 
 import javax.swing.*;
 import java.net.URL;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public interface Kamus {
@@ -65,6 +66,6 @@ public interface Kamus {
     }
 
     // App Icon
-    ImageIcon appIcon = new ImageIcon("assets/icon.png");
-
+    URL appIconURL = Kamus.class.getClassLoader().getResource("assets/icon.png");
+    ImageIcon appIcon = new ImageIcon(Objects.requireNonNull(appIconURL));
 }

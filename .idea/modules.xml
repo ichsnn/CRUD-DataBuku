@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CRUD-DataBuku.iml" filepath="$PROJECT_DIR$/CRUD-DataBuku.iml" />
+      <module fileurl="file://$PROJECT_DIR$/assets/assets.iml" filepath="$PROJECT_DIR$/assets/assets.iml" />
     </modules>
   </component>
 </project>
