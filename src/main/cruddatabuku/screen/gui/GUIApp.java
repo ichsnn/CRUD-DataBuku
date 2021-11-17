@@ -4,6 +4,8 @@ GUIApp.java | Digunakan sebagai beranda aplikasi untuk memilih file yang ingin d
 
 package main.cruddatabuku.screen.gui;
 
+import main.cruddatabuku.screen.gui.component.Button;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
@@ -14,14 +16,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+import static main.cruddatabuku.screen.gui.UIManagerMethod.setUI;
 import static main.cruddatabuku.util.Kamus.appIcon;
 
 public class GUIApp extends JFrame implements ActionListener {
     JFileChooser fileChooser;
-    JButton fileChooserButton;
-    JButton bukaButton;
-    JButton keluarButton;
-    JButton buatFileButton;
+
+    Button fileChooserButton = new Button();
+    Button bukaButton = new Button("Buka");
+    Button keluarButton = new Button("Keluar");
+    Button buatFileButton = new Button("Buat File Baru");
+
     JPanel buttonContainer;
     JPanel container;
     JPanel folderPanel;
@@ -40,8 +45,6 @@ public class GUIApp extends JFrame implements ActionListener {
         Image newImg = image.getScaledInstance(16, 16, Image.SCALE_SMOOTH);
         folderIcon = new ImageIcon(newImg);
 
-        fileChooserButton = new JButton();
-        fileChooserButton.setFocusable(false);
         fileChooserButton.setIcon(folderIcon);
         fileChooserButton.setBounds(0, 0, 16, 16);
         fileChooserButton.addActionListener(this);
@@ -58,15 +61,8 @@ public class GUIApp extends JFrame implements ActionListener {
         }
         textField.setMargin(new Insets(5, 10, 5, 10));
 
-        bukaButton = new JButton("Buka");
-        keluarButton = new JButton("Keluar");
-        buatFileButton = new JButton("Buat File Baru");
-
-        bukaButton.setFocusable(false);
         bukaButton.addActionListener(this);
-        keluarButton.setFocusable(false);
         keluarButton.addActionListener(this);
-        buatFileButton.setFocusable(false);
         buatFileButton.addActionListener(this);
 
         buttonContainer = new JPanel();
@@ -115,7 +111,7 @@ public class GUIApp extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == fileChooserButton) {
-            //getSystemUI(UIManager.getSystemLookAndFeelClassName());
+            setUI(UIManager.getSystemLookAndFeelClassName());
 
             fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("./data"));
@@ -140,7 +136,7 @@ public class GUIApp extends JFrame implements ActionListener {
                 textField.setText(file.getPath());
             }
 
-            //getSystemUI(UIManager.getCrossPlatformLookAndFeelClassName());
+            setUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
 
         if (e.getSource() == bukaButton) {
@@ -159,7 +155,7 @@ public class GUIApp extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == buatFileButton) {
-            //getSystemUI(UIManager.getSystemLookAndFeelClassName());
+            setUI(UIManager.getSystemLookAndFeelClassName());
 
             JFileChooser createFile = new JFileChooser();
             createFile.setCurrentDirectory(new File("./"));
@@ -198,6 +194,7 @@ public class GUIApp extends JFrame implements ActionListener {
                             boolean success = newFile.createNewFile();
                             if (success) {
                                 file = newFile;
+                                setUI(UIManager.getCrossPlatformLookAndFeelClassName());
                                 new Editor(file);
                                 this.dispose();
                                 notReapet = true;
@@ -214,7 +211,7 @@ public class GUIApp extends JFrame implements ActionListener {
             } while (!notReapet);
 
 
-            //getSystemUI(UIManager.getCrossPlatformLookAndFeelClassName());
+            setUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
     }
 }

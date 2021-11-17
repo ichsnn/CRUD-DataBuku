@@ -1,6 +1,8 @@
 package main.cruddatabuku.screen.gui;
 
 import main.cruddatabuku.buku.DataBuku;
+import main.cruddatabuku.screen.gui.component.Button;
+import main.cruddatabuku.screen.gui.component.MenuBar;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -20,17 +22,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.cruddatabuku.util.Berkas.*;
+import static main.cruddatabuku.screen.gui.UIManagerMethod.setUI;
+import static main.cruddatabuku.util.Berkas.deleteData;
+import static main.cruddatabuku.util.Berkas.memuatDataBuku;
 import static main.cruddatabuku.util.Kamus.appIcon;
 
 public class Editor extends JFrame implements ActionListener, DocumentListener, WindowListener {
     private final String fileName;
 
-    MenuBar menuBar = new MenuBar();
-
-    JButton btnTambahBuku = new JButton("Tambah Buku");
-    JButton btnUpdateBuku = new JButton("Update Buku");
-    JButton btnHapusBuku = new JButton("Hapus Buku");
+    Button btnTambahBuku = new Button("Tambah Buku");
+    Button btnUpdateBuku = new Button("Update Buku");
+    Button btnHapusBuku = new Button("Hapus Buku");
 
     JPanel topPanel;
     JPanel titlePanel;
@@ -56,6 +58,8 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     TambahBuku tambahBukuDialog;
     UpdateBuku updateBukuDialog;
 
+    MenuBar menuBar = new MenuBar();
+
     boolean sukses;
 
     public Editor(File file) {
@@ -70,12 +74,10 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
             this.setTitle("Aplikasi Pengelola Daftar Buku (" + fileName + ")");
         }
 
+
         // Button
-        btnTambahBuku.setFocusable(false);
         btnTambahBuku.addActionListener(this);
-        btnUpdateBuku.setFocusable(false);
         btnUpdateBuku.addActionListener(this);
-        btnHapusBuku.setFocusable(false);
         btnHapusBuku.addActionListener(this);
 
         if (!sukses) {
@@ -125,12 +127,15 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         table.setShowGrid(false);
         table.setBackground(Color.white);
         table.setOpaque(true);
-        table.setFont(new Font("Calibri", Font.PLAIN, 16));
-        table.setRowHeight(35);
-        table.getTableHeader().setFont(new Font("Calibri", Font.BOLD, 18));
+        table.setFont(new Font("Calibri", Font.PLAIN, 14));
+        table.setRowHeight(14 + 16);
+        table.getTableHeader().setFont(new Font("Calibri", Font.BOLD, 14));
+
+        /* Styling table header and table selection
         table.getTableHeader().setBackground(Color.decode("#1A81CF"));
         table.getTableHeader().setForeground(Color.WHITE);
         table.setSelectionBackground(Color.decode("#cce9ff"));
+         */
 
         // styling tablePane
         tablePane = new JScrollPane(table);
@@ -139,28 +144,15 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         tablePane.getViewport().setBackground(Color.white);
 
         // styling topPanel
-        topPanel = new JPanel();
-        topPanel.setBackground(Color.WHITE);
-        topPanel.setOpaque(true);
-
-        titlePanel = new JPanel();
-        JLabel titleLabel = new JLabel("DAFTAR DATA BUKU");
-        titleLabel.setFont(new Font("Calibri", Font.BOLD, 36));
-        titlePanel.add(titleLabel);
-        titlePanel.setBackground(Color.WHITE);
-        titlePanel.setOpaque(true);
-
-        topPanel.setLayout(new BorderLayout());
-        topPanel.add(titlePanel, BorderLayout.NORTH);
 
         pencarian = new JTextField();
-        pencarian.setFont(new Font("Calibri", Font.PLAIN, 16));
+        pencarian.setFont(new Font("Dialog", Font.PLAIN, 14));
         pencarian.setPreferredSize(new Dimension(200, 30));
-        pencarian.setMargin(new Insets(0, 5, 0, 5));
+        pencarian.setMargin(new Insets(2, 5, 2, 5));
         pencarian.getDocument().addDocumentListener(this);
 
-        JLabel labelPencarian = new JLabel("Pencarian : ");
-        labelPencarian.setFont(new Font("Calibri", Font.PLAIN, 16));
+        JLabel labelPencarian = new JLabel("Cari : ");
+        labelPencarian.setFont(new Font("Dialog", Font.PLAIN, 14));
         labelPencarian.setLabelFor(pencarian);
 
         JPanel panelButton = new JPanel();
@@ -251,6 +243,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         }
 
         if (e.getSource() == menuBar.loadItem) {
+            setUI(UIManager.getSystemLookAndFeelClassName());
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("./data"));
             fileChooser.setFileFilter(new FileFilter() {
@@ -273,10 +266,12 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                 new Editor(fileChooser.getSelectedFile());
                 this.dispose();
             }
+            setUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
 
         if (e.getSource() == menuBar.createItem) {
             File newFile;
+            setUI(UIManager.getSystemLookAndFeelClassName());
             JFileChooser createFile = new JFileChooser();
             createFile.setCurrentDirectory(new File("./"));
             createFile.setFileFilter(new FileFilter() {
@@ -312,6 +307,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                         try {
                             boolean success = newFile.createNewFile();
                             if (success) {
+                                setUI(UIManager.getCrossPlatformLookAndFeelClassName());
                                 new Editor(newFile);
                                 this.dispose();
                                 notReapet = true;
@@ -326,6 +322,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                     notReapet = true;
                 }
             } while (!notReapet);
+            setUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
 
         if (e.getSource() == menuBar.closeItem) {
