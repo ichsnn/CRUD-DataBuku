@@ -353,6 +353,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                     row = updateBukuDialog.getRow();
 
                     id = updateBukuDialog.getBukuBaru()[0];
+                    System.out.println(id);
                     kodeBuku = updateBukuDialog.getBukuBaru()[1];
                     judulBuku = updateBukuDialog.getBukuBaru()[2];
                     jenisBuku = updateBukuDialog.getBukuBaru()[3];

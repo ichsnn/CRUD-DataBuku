@@ -175,6 +175,7 @@ public class TambahBuku extends JDialog implements ActionListener {
             } else {
                 id = listDataBuku.get(listDataBuku.size() - 1).getId() + 1;
             }
+
             kodeBuku = textFieldKodeBuku.getText();
             judulBuku = textFieldJudulBuku.getText();
             penulis = textFieldPenulis.getText();

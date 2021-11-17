@@ -114,7 +114,7 @@ public class DataBuku {
 
     // Digunakan untuk menulis data kedalam flat file (*.txt)
     public String getTxtFormat() {
-        return (id + PEMBATAS + kodeBuku + PEMBATAS + judulBuku + PEMBATAS + penulis + PEMBATAS + penerbit + PEMBATAS + tahunTerbit);
+        return(String.valueOf(id) + PEMBATAS + kodeBuku + PEMBATAS + judulBuku + PEMBATAS + penulis + PEMBATAS + penerbit + PEMBATAS + tahunTerbit);
     }
 
     public Object[] geetArrayFormat() {

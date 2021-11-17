@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public interface Kamus {
-    char PEMBATAS = '#';
+    char PEMBATAS = ';';
 
     // daftar attribut yang ada pada databuku, digunakan untuk membanding value pada manajemen berkas
     String KODEBUKU = "KODEBUKU";
