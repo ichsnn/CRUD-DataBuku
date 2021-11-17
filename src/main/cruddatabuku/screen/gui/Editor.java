@@ -297,10 +297,23 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     public void loadData() {
         if (sukses) {
             for (DataBuku buku : listDataBuku) {
+                if (buku == null) {
+                    break;
+                }
                 defaultTableModel.addRow(buku.geetArrayFormat());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "File / Folder tidak ditemukan!", "Error", JOptionPane.WARNING_MESSAGE);
+            boolean nullBooks = false;
+            for (DataBuku buku : listDataBuku) {
+                if (buku == null) {
+                    nullBooks = true;
+                    break;
+                }
+            }
+            if (nullBooks) {
+                JOptionPane.showMessageDialog(this, "Terdapat kesalahan format dalam file!", "Error", JOptionPane.WARNING_MESSAGE);
+            } else
+                JOptionPane.showMessageDialog(this, "File / Folder tidak ditemukan!", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }
 

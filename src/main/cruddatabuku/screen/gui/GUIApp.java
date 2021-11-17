@@ -1,3 +1,7 @@
+/*
+GUIApp.java | Digunakan sebagai beranda aplikasi untuk memilih file yang ingin dibuka atau membuat file baru
+ */
+
 package main.cruddatabuku.screen.gui;
 
 import javax.swing.*;
@@ -48,9 +52,11 @@ public class GUIApp extends JFrame implements ActionListener {
         //textField.setFont(new Font("Calibri", Font.PLAIN, 16));
         textField.setBackground(Color.white);
         textField.setPreferredSize(new Dimension(100, 16));
-        textField.setText(file.getPath());
+        if (file.exists()) {
+            textField.setText(file.getPath());
+            textField.setCaretPosition(file.getPath().length());
+        }
         textField.setMargin(new Insets(5, 10, 5, 10));
-        textField.setCaretPosition(file.getPath().length());
 
         bukaButton = new JButton("Buka");
         keluarButton = new JButton("Keluar");
@@ -138,8 +144,15 @@ public class GUIApp extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == bukaButton) {
-            new Editor(file);
-            this.dispose();
+            if (!textField.getText().isEmpty() && textField.getText().contains(".txt")) {
+                file = new File(textField.getText());
+                System.out.println(file.getPath());
+                new Editor(file);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Tuliskan file yang ingin dibuka dengan format file .txt !", "Buka File", JOptionPane.INFORMATION_MESSAGE);
+                textField.setFocusable(true);
+            }
         }
 
         if (e.getSource() == keluarButton) {

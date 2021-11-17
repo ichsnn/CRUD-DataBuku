@@ -28,15 +28,21 @@ public interface Berkas {
                         Scanner readFile = new Scanner(file);
                         while (readFile.hasNextLine()) {
                             String data = readFile.nextLine();
-                            listDataBuku.add(createBuku(data));
+                            DataBuku loadBuku = createBuku(data);
+                            listDataBuku.add(loadBuku);
+                            if (loadBuku == null) {
+                                return false;
+                            }
                         }
                         readFile.close();
                         return true;
                     } else {
                         System.out.println("Terjadi Kesalahan Didalam File!");
+                        return false;
                     }
                 } catch (FileNotFoundException e) {
-                    System.out.println("Error : Terjadi File Tidak Ditemukan!");
+                    System.out.println("Error : File Tidak Ditemukan!");
+                    return false;
                 }
             } else {
                 System.out.println("Isi File Kosong!");
@@ -239,7 +245,10 @@ public interface Berkas {
 
     private static DataBuku createBuku(String data) {
         String[] dataBuku = data.split(String.valueOf(PEMBATAS));
-        return (new DataBuku(dataBuku[0], dataBuku[1], dataBuku[2], dataBuku[3], dataBuku[4], dataBuku[5]));
+        if (dataBuku.length == 6) {
+            return (new DataBuku(dataBuku[0], dataBuku[1], dataBuku[2], dataBuku[3], dataBuku[4], dataBuku[5]));
+        }
+        return null;
     }
 
     private static boolean validasiData(Scanner readFile) {
