@@ -1,1 +1,1 @@
-1;KB0001;Algoritma;Rinaldi Munir;Informatika;2017
+1;KB0001;Algoritma dan Pemrograman;Rinaldi Munir;Informatika;2017

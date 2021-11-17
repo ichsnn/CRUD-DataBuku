@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-import static main.cruddatabuku.screen.gui.UIManagerMethod.setUI;
+import static main.cruddatabuku.screen.gui.component.UIManagerMethod.setUI;
 import static main.cruddatabuku.util.Kamus.appIcon;
 
 public class GUIApp extends JFrame implements ActionListener {
@@ -114,7 +114,11 @@ public class GUIApp extends JFrame implements ActionListener {
             setUI(UIManager.getSystemLookAndFeelClassName());
 
             fileChooser = new JFileChooser();
-            fileChooser.setCurrentDirectory(new File("./data"));
+            if (new File("./data").exists()) {
+                fileChooser.setCurrentDirectory(new File("./data"));
+            } else {
+                fileChooser.setCurrentDirectory(new File("."));
+            }
             fileChooser.setFileFilter(new FileFilter() {
                 @Override
                 public boolean accept(File f) {
@@ -158,7 +162,11 @@ public class GUIApp extends JFrame implements ActionListener {
             setUI(UIManager.getSystemLookAndFeelClassName());
 
             JFileChooser createFile = new JFileChooser();
-            createFile.setCurrentDirectory(new File("./"));
+            if (new File("./data").exists()) {
+                createFile.setCurrentDirectory(new File("./data"));
+            } else {
+                createFile.setCurrentDirectory(new File("."));
+            }
             createFile.setFileFilter(new FileFilter() {
                 @Override
                 public boolean accept(File f) {

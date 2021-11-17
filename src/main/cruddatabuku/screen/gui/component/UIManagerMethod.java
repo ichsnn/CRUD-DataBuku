@@ -1,4 +1,4 @@
-package main.cruddatabuku.screen.gui;
+package main.cruddatabuku.screen.gui.component;
 
 import javax.swing.*;
 

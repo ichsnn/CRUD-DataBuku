@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.cruddatabuku.screen.gui.UIManagerMethod.setUI;
+import static main.cruddatabuku.screen.gui.component.UIManagerMethod.setUI;
 import static main.cruddatabuku.util.Berkas.deleteData;
 import static main.cruddatabuku.util.Berkas.memuatDataBuku;
 import static main.cruddatabuku.util.Kamus.appIcon;
@@ -245,7 +245,11 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         if (e.getSource() == menuBar.loadItem) {
             setUI(UIManager.getSystemLookAndFeelClassName());
             JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setCurrentDirectory(new File("./data"));
+            if (new File("./data").exists()) {
+                fileChooser.setCurrentDirectory(new File("./data"));
+            } else {
+                fileChooser.setCurrentDirectory(new File("."));
+            }
             fileChooser.setFileFilter(new FileFilter() {
                 @Override
                 public boolean accept(File f) {
@@ -273,7 +277,11 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
             File newFile;
             setUI(UIManager.getSystemLookAndFeelClassName());
             JFileChooser createFile = new JFileChooser();
-            createFile.setCurrentDirectory(new File("./"));
+            if (new File("./data").exists()) {
+                createFile.setCurrentDirectory(new File("./data"));
+            } else {
+                createFile.setCurrentDirectory(new File("."));
+            }
             createFile.setFileFilter(new FileFilter() {
                 @Override
                 public boolean accept(File f) {
@@ -290,9 +298,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                 }
 
             });
-            createFile.setCurrentDirectory(new File("./data"));
             createFile.setDialogTitle("Crate New File");
-
             boolean notReapet = false;
             int respon;
             do {

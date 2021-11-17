@@ -4,6 +4,7 @@ import main.cruddatabuku.buku.DataBuku;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -95,8 +96,10 @@ public class TambahBuku extends JDialog implements ActionListener {
         labelPanel.add(label4);
         labelPanel.add(label5);
 
+        submitButton.setUI(new BasicButtonUI());
         submitButton.setFocusable(false);
         submitButton.addActionListener(this);
+        cancelButton.setUI(new BasicButtonUI());
         cancelButton.setFocusable(false);
         cancelButton.addActionListener(this);
 
