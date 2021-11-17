@@ -146,7 +146,6 @@ public class GUIApp extends JFrame implements ActionListener {
         if (e.getSource() == bukaButton) {
             if (!textField.getText().isEmpty() && textField.getText().contains(".txt")) {
                 file = new File(textField.getText());
-                System.out.println(file.getPath());
                 new Editor(file);
                 this.dispose();
             } else {
@@ -185,16 +184,20 @@ public class GUIApp extends JFrame implements ActionListener {
 
             boolean notReapet = false;
             int respon;
+            File newFile;
             do {
                 respon = createFile.showSaveDialog(this);
                 if (respon == JFileChooser.APPROVE_OPTION) {
-                    File newFile = new File(createFile.getSelectedFile().getPath() + ".txt");
+                    if (!createFile.getSelectedFile().getPath().contains(".txt")) {
+                        newFile = new File(createFile.getSelectedFile().getPath() + ".txt");
+                    } else {
+                        newFile = new File(createFile.getSelectedFile().getPath());
+                    }
                     if (!newFile.exists()) {
                         try {
                             boolean success = newFile.createNewFile();
                             if (success) {
                                 file = newFile;
-                                getSystemUI(UIManager.getCrossPlatformLookAndFeelClassName());
                                 new Editor(file);
                                 this.dispose();
                                 notReapet = true;
@@ -212,14 +215,6 @@ public class GUIApp extends JFrame implements ActionListener {
 
 
             //getSystemUI(UIManager.getCrossPlatformLookAndFeelClassName());
-        }
-    }
-
-    private void getSystemUI(String systemLookAndFeelClassName) {
-        try {
-            UIManager.setLookAndFeel(systemLookAndFeelClassName);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace();
         }
     }
 }

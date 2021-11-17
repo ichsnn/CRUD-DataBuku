@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -15,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,8 @@ import static main.cruddatabuku.util.Kamus.appIcon;
 
 public class Editor extends JFrame implements ActionListener, DocumentListener, WindowListener {
     private final String fileName;
+
+    MenuBar menuBar = new MenuBar();
 
     JButton btnTambahBuku = new JButton("Tambah Buku");
     JButton btnUpdateBuku = new JButton("Update Buku");
@@ -199,6 +203,12 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         createdBy.setBackground(Color.WHITE);
         createdBy.setOpaque(true);
 
+        menuBar.loadItem.addActionListener(this);
+        menuBar.createItem.addActionListener(this);
+        menuBar.closeItem.addActionListener(this);
+        menuBar.exitItem.addActionListener(this);
+
+        this.setJMenuBar(menuBar);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.setMinimumSize(new Dimension(800, 500));
@@ -236,6 +246,95 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                 JOptionPane.showMessageDialog(this, "Seleksi salah satu data pada tabel terlebih dahulu", "Update Data", JOptionPane.INFORMATION_MESSAGE);
             }
         }
+
+        if (e.getSource() == menuBar.loadItem) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File("./data"));
+            fileChooser.setFileFilter(new FileFilter() {
+                @Override
+                public boolean accept(File f) {
+                    if (f.isDirectory()) {
+                        return true;
+                    } else {
+                        return f.getName().toLowerCase().endsWith(".txt");
+                    }
+                }
+
+                @Override
+                public String getDescription() {
+                    return "Flat File (*.txt)";
+                }
+            });
+            int respon = fileChooser.showOpenDialog(this);
+            if (respon == JFileChooser.APPROVE_OPTION) {
+                new Editor(fileChooser.getSelectedFile());
+                this.dispose();
+            }
+        }
+
+        if (e.getSource() == menuBar.createItem) {
+            File newFile;
+            JFileChooser createFile = new JFileChooser();
+            createFile.setCurrentDirectory(new File("./"));
+            createFile.setFileFilter(new FileFilter() {
+                @Override
+                public boolean accept(File f) {
+                    if (f.isDirectory()) {
+                        return true;
+                    } else {
+                        return f.getName().toLowerCase().endsWith(".txt");
+                    }
+                }
+
+                @Override
+                public String getDescription() {
+                    return "Flat File (*.txt)";
+                }
+
+            });
+            createFile.setCurrentDirectory(new File("./data"));
+            createFile.setDialogTitle("Crate New File");
+
+            boolean notReapet = false;
+            int respon;
+            do {
+                respon = createFile.showSaveDialog(this);
+                if (respon == JFileChooser.APPROVE_OPTION) {
+                    if (!createFile.getSelectedFile().getPath().contains(".txt")) {
+                        newFile = new File(createFile.getSelectedFile().getPath() + ".txt");
+                    } else {
+                        newFile = new File(createFile.getSelectedFile().getPath());
+                    }
+                    if (!newFile.exists()) {
+                        try {
+                            boolean success = newFile.createNewFile();
+                            if (success) {
+                                new Editor(newFile);
+                                this.dispose();
+                                notReapet = true;
+                            }
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Nama file sudah ada!", "", JOptionPane.WARNING_MESSAGE);
+                    }
+                } else if (respon == JFileChooser.CANCEL_OPTION) {
+                    notReapet = true;
+                }
+            } while (!notReapet);
+        }
+
+        if (e.getSource() == menuBar.closeItem) {
+            new GUIApp();
+            this.dispose();
+        }
+
+        if (e.getSource() == menuBar.exitItem) {
+            this.dispose();
+        }
+
+
     }
 
     private void hapusBuku() {
@@ -390,4 +489,5 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     public void windowDeactivated(WindowEvent e) {
 
     }
+
 }
