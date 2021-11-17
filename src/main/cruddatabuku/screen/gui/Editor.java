@@ -232,6 +232,8 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
 
                 updateBukuDialog = new UpdateBuku(objectsSelected, listDataBuku, fileName, rS);
 
+            } else {
+                JOptionPane.showMessageDialog(this, "Seleksi salah satu data pada tabel terlebih dahulu", "Update Data", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }

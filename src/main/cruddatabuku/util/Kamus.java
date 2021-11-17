@@ -20,20 +20,21 @@ public interface Kamus {
     String TAHUNTERBIT = "TAHUNTERBIT";
 
     // Regex | Pattern
-    Pattern P_KODEBUKU = Pattern.compile("^KB[\\d]{3}\\d+$");
-    Pattern P_TAHUNTERBIT = Pattern.compile("^[\\d]{4}$");
+    Pattern P_KODEBUKU = Pattern.compile("^KB[\\d][0]{2}\\d+$"); // Kode buku harus terdiri dari huruf KB dilanjutkan dengan 3 angka dengan angka pertama nya angka 0-9 dan dua angka selanjutnya angka 0, dan diiukuti oleh angka yang bebas
+    Pattern P_TAHUNTERBIT = Pattern.compile("^[\\d]{4}$");  // Tahun terbit harus terdiri dari 4 angka
 
+    // digunakan untuk menuliskan membuat keterangan jenis buku
     String[][] KODE_JENISBUKU = {
-            {"^0[0-9]{2,2}$", "Karya Umum"},
-            {"^1[0-9]{2,2}$", "Filsafat"},
-            {"^2[0-9]{2,2}$", "Agama"},
-            {"^3[0-9]{2,2}$", "Ilmu Sosial"},
-            {"^4[0-9]{2,2}$", "Bahasa"},
-            {"^5[0-9]{2,2}$", "Ilmu Murni"},
-            {"^6[0-9]{2,2}$", "Pengetahuan Praktis"},
-            {"^7[0-9]{2,2}$", "Kesenian dan Hiburan"},
-            {"^8[0-9]{2,2}$", "Kesusatraan"},
-            {"^9[0-9]{2,2}$", "Sejarah"},
+            {"^0[0]{2,2}$", "Karya Umum"},
+            {"^1[0]{2,2}$", "Filsafat"},
+            {"^2[0]{2,2}$", "Agama"},
+            {"^3[0]{2,2}$", "Ilmu Sosial"},
+            {"^4[0]{2,2}$", "Bahasa"},
+            {"^5[0]{2,2}$", "Ilmu Murni"},
+            {"^6[0]{2,2}$", "Pengetahuan Praktis"},
+            {"^7[0]{2,2}$", "Kesenian dan Hiburan"},
+            {"^8[0]{2,2}$", "Kesusatraan"},
+            {"^9[0]{2,2}$", "Sejarah"},
     };
 
     static void printExist() {

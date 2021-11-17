@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static main.cruddatabuku.util.Kamus.KODE_JENISBUKU;
+import static main.cruddatabuku.util.Kamus.PEMBATAS;
 
 public class DataBuku {
     private int id;
@@ -113,7 +114,7 @@ public class DataBuku {
 
     // Digunakan untuk menulis data kedalam flat file (*.txt)
     public String getTxtFormat() {
-        return (id + "#" + kodeBuku + "#" + judulBuku + "#" + penulis + "#" + penerbit + "#" + tahunTerbit);
+        return (id + PEMBATAS + kodeBuku + PEMBATAS + judulBuku + PEMBATAS + penulis + PEMBATAS + penerbit + PEMBATAS + tahunTerbit);
     }
 
     public Object[] geetArrayFormat() {
