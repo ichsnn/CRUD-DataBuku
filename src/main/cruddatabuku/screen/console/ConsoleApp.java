@@ -5,7 +5,7 @@ Panggil file ini di main file dengan syntax ' new ConsoleApp(); '
 
 package main.cruddatabuku.screen.console;
 
-import main.cruddatabuku.buku.DataBuku;
+import main.cruddatabuku.buku.Buku;
 import main.cruddatabuku.util.Berkas;
 
 import java.io.File;
@@ -19,7 +19,7 @@ import static main.cruddatabuku.util.Library.clearScreen;
 import static main.cruddatabuku.util.Library.printError;
 
 public class ConsoleApp implements Berkas {
-    protected List<DataBuku> listDataBuku = new ArrayList<>();
+    protected List<Buku> listBuku = new ArrayList<>();
     protected String fileName = ".\\data\\dataBuku.txt";
 
     public ConsoleApp() {
@@ -50,7 +50,7 @@ public class ConsoleApp implements Berkas {
         // load file sesuai dengan file name yang diinputkan, program akan memeriksa default file name (dataBuku.txt)
         // jika saat proses load data ada kesalahan maka program akan meminta membuat file baru
         do {
-            sukses = memuatDataBuku(new File(fileName), listDataBuku);
+            sukses = memuatDataBuku(new File(fileName), listBuku);
             if (!sukses) {
                 System.out.println("Apakah Anda Ingin Membuat File Baru (Y/T) ?");
                 System.out.print("~ ");
@@ -79,7 +79,7 @@ public class ConsoleApp implements Berkas {
 
         // jalankan menu utama jika load data sukses jika tidak keluar program
         if (sukses) {
-            new MainMenu(listDataBuku, fileName);
+            new MainMenu(listBuku, fileName);
         }
         input.close();
         clearScreen();

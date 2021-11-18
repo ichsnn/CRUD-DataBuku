@@ -6,7 +6,7 @@ Semua data yang disimpan dari file akan dimasukkan kedalam ArrayList sebagai pen
 
 package main.cruddatabuku.util;
 
-import main.cruddatabuku.buku.DataBuku;
+import main.cruddatabuku.buku.Buku;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import static main.cruddatabuku.util.Library.*;
 
 public interface Berkas {
 
-    static boolean memuatDataBuku(File file, List<DataBuku> listDataBuku) {
+    static boolean memuatDataBuku(File file, List<Buku> listBuku) {
         if (file.exists()) {
             if (file.length() != 0) {
                 try {
@@ -28,8 +28,8 @@ public interface Berkas {
                         Scanner readFile = new Scanner(file);
                         while (readFile.hasNextLine()) {
                             String data = readFile.nextLine();
-                            DataBuku loadBuku = createBuku(data);
-                            listDataBuku.add(loadBuku);
+                            Buku loadBuku = createBuku(data);
+                            listBuku.add(loadBuku);
                             if (loadBuku == null) {
                                 return false;
                             }
@@ -52,12 +52,12 @@ public interface Berkas {
         return false;
     }
 
-    static void tampilData(List<DataBuku> listDataBuku) {
-        if (!listDataBuku.isEmpty()) {
+    static void tampilData(List<Buku> listBuku) {
+        if (!listBuku.isEmpty()) {
             int i = 0;
-            for (DataBuku buku : listDataBuku) {
+            for (Buku buku : listBuku) {
                 buku.tampil();
-                if (i < listDataBuku.size() - 1) {
+                if (i < listBuku.size() - 1) {
                     System.out.println();
                 }
                 i++;
@@ -67,13 +67,13 @@ public interface Berkas {
         }
     }
 
-    static void tampilData(List<DataBuku> listDataBuku, String jenisAtribut, String dicari) {
-        List<DataBuku> temp = new ArrayList<>();
+    static void tampilData(List<Buku> listBuku, String jenisAtribut, String dicari) {
+        List<Buku> temp = new ArrayList<>();
         Pattern p = Pattern.compile(dicari, Pattern.CASE_INSENSITIVE);
         Matcher m;
         jenisAtribut = jenisAtribut.toUpperCase();
-        if (!listDataBuku.isEmpty()) {
-            for (DataBuku buku : listDataBuku) {
+        if (!listBuku.isEmpty()) {
+            for (Buku buku : listBuku) {
                 switch (jenisAtribut) {
                     case KODEBUKU:
                         m = p.matcher(buku.getKodeBuku());
@@ -100,7 +100,7 @@ public interface Berkas {
         }
         if (!temp.isEmpty()) {
             int i = 0;
-            for (DataBuku buku : temp) {
+            for (Buku buku : temp) {
                 buku.tampil();
                 if (i < temp.size() - 1) {
                     System.out.println();
@@ -112,7 +112,7 @@ public interface Berkas {
         }
     }
 
-    static void tambahData(File file, List<DataBuku> listDataBuku) {
+    static void tambahData(File file, List<Buku> listBuku) {
         Scanner input = new Scanner(System.in);
         int lastID = 0;
         String kodeBuku;
@@ -121,8 +121,8 @@ public interface Berkas {
         String penerbit;
         String tahunTerbit;
 
-        if (!listDataBuku.isEmpty()) {
-            lastID = listDataBuku.get(listDataBuku.size() - 1).getId();
+        if (!listBuku.isEmpty()) {
+            lastID = listBuku.get(listBuku.size() - 1).getId();
         }
 
         System.out.println("Masukkan Data Buku");
@@ -130,7 +130,7 @@ public interface Berkas {
         boolean sameValue = false;
         do {
             kodeBuku = validasiInput("Kode Buku", P_KODEBUKU);
-            for (DataBuku buku : listDataBuku) {
+            for (Buku buku : listBuku) {
                 if (buku.getKodeBuku().contentEquals(kodeBuku)) {
                     System.out.println("Kode buku sudah ada!");
                     sameValue = true;
@@ -148,23 +148,23 @@ public interface Berkas {
         penerbit = input.nextLine();
         tahunTerbit = validasiInput("Tahun Terbit", P_TAHUNTERBIT);
 
-        DataBuku dataBuku = new DataBuku(++lastID, kodeBuku, judulBuku, penulis, penerbit, tahunTerbit);
+        Buku buku = new Buku(++lastID, kodeBuku, judulBuku, penulis, penerbit, tahunTerbit);
 
         try {
             FileWriter fileWriter = new FileWriter(file, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write((file.length() != 0 ? "\n" : "") + dataBuku.getTxtFormat());
+            bufferedWriter.write((file.length() != 0 ? "\n" : "") + buku.getTxtFormat());
             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        listDataBuku.add(dataBuku);
+        listBuku.add(buku);
     }
 
-    static void updateData(String fileName, List<DataBuku> listDataBuku, int id, String jenisAtribut, String isiData) {
+    static void updateData(String fileName, List<Buku> listBuku, int id, String jenisAtribut, String isiData) {
         jenisAtribut = jenisAtribut.toUpperCase();
-        for (DataBuku buku : listDataBuku) {
+        for (Buku buku : listBuku) {
             if (buku.getId() == id) {
                 switch (jenisAtribut) {
                     case KODEBUKU:
@@ -185,18 +185,18 @@ public interface Berkas {
                 }
             }
         }
-        update(fileName, listDataBuku);
+        update(fileName, listBuku);
     }
 
-    static void update(String fileName, List<DataBuku> listDataBuku) {
+    static void update(String fileName, List<Buku> listBuku) {
         File file = new File(fileName);
         try {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             int row = 0;
-            for (DataBuku buku : listDataBuku) {
+            for (Buku buku : listBuku) {
                 bufferedWriter.write(
-                        ((listDataBuku.size() > 0) && (row != 0) ? "\n" : "") + buku.getTxtFormat()
+                        ((listBuku.size() > 0) && (row != 0) ? "\n" : "") + buku.getTxtFormat()
                 );
                 row++;
             }
@@ -208,10 +208,10 @@ public interface Berkas {
         }
     }
 
-    static void deleteData(String fileName, List<DataBuku> listDataBuku, int id) {
+    static void deleteData(String fileName, List<Buku> listBuku, int id) {
         int listIndex = 0;
         boolean ketemu = false;
-        for (DataBuku buku : listDataBuku) {
+        for (Buku buku : listBuku) {
             if (buku.getId() == id) {
                 ketemu = true;
                 break;
@@ -220,33 +220,33 @@ public interface Berkas {
         }
 
         if (ketemu) {
-            listDataBuku.remove(listIndex);
-            update(fileName, listDataBuku);
+            listBuku.remove(listIndex);
+            update(fileName, listBuku);
         } else {
             printIdNotFound();
         }
     }
 
-    static void deleteSemuaData(String fileName, List<DataBuku> listDataBuku) {
-        if (listDataBuku.isEmpty()) {
+    static void deleteSemuaData(String fileName, List<Buku> listBuku) {
+        if (listBuku.isEmpty()) {
             System.out.print("Isi file kosong!");
             new Scanner(System.in).nextLine();
         } else {
-            listDataBuku.clear();
-            update(fileName, listDataBuku);
+            listBuku.clear();
+            update(fileName, listBuku);
         }
     }
 
-    static void addTempList(Matcher m, DataBuku buku, List<DataBuku> list) {
+    static void addTempList(Matcher m, Buku buku, List<Buku> list) {
         if (m.find()) {
             list.add(createBuku(buku.getTxtFormat()));
         }
     }
 
-    static DataBuku createBuku(String data) {
+    static Buku createBuku(String data) {
         String[] dataBuku = data.split(String.valueOf(PEMBATAS));
         if (dataBuku.length == 6) {
-            return (new DataBuku(dataBuku[0], dataBuku[1], dataBuku[2], dataBuku[3], dataBuku[4], dataBuku[5]));
+            return (new Buku(dataBuku[0], dataBuku[1], dataBuku[2], dataBuku[3], dataBuku[4], dataBuku[5]));
         }
         return null;
     }

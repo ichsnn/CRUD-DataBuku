@@ -1,6 +1,6 @@
 package main.cruddatabuku.screen.console;
 
-import main.cruddatabuku.buku.DataBuku;
+import main.cruddatabuku.buku.Buku;
 
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class CariBuku {
     String dicari;
     Scanner input = new Scanner(System.in);
 
-    public CariBuku(List<DataBuku> listDataBuku) {
+    public CariBuku(List<Buku> listBuku) {
         do {
             clearScreen();
             System.out.println("CARI BUKU");
@@ -36,7 +36,7 @@ public class CariBuku {
                     System.out.print("~ Cari : ");
                     dicari = input.nextLine();
                     System.out.println();
-                    tampilData(listDataBuku, jenisAtribut, dicari);
+                    tampilData(listBuku, jenisAtribut, dicari);
                     System.out.println();
                     System.out.println("Tekan [Enter] untuk kembali...");
                     System.out.println();

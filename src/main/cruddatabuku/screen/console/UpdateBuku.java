@@ -1,6 +1,6 @@
 package main.cruddatabuku.screen.console;
 
-import main.cruddatabuku.buku.DataBuku;
+import main.cruddatabuku.buku.Buku;
 
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class UpdateBuku {
     private String isiData;
     private int id;
 
-    public UpdateBuku(List<DataBuku> listDataBuku, String fileName) {
+    public UpdateBuku(List<Buku> listBuku, String fileName) {
         String opsi;
         Scanner input = new Scanner(System.in);
         do {
@@ -42,7 +42,7 @@ public class UpdateBuku {
                         idValue = input.nextLine();
                     } while (!idValue.matches("^[\\d]+$"));
                     id = Integer.parseInt(idValue);
-                    for (DataBuku buku : listDataBuku) {
+                    for (Buku buku : listBuku) {
                         if (buku.getId() == id) {
                             idExeption = true;
                             break;
@@ -53,8 +53,8 @@ public class UpdateBuku {
                         new Scanner(System.in).nextLine();
                         break;
                     }
-                    validasiIsiData(listDataBuku);
-                    updateData(fileName, listDataBuku, id, jenisAtribut, isiData);
+                    validasiIsiData(listBuku);
+                    updateData(fileName, listBuku, id, jenisAtribut, isiData);
                     break;
             }
         } while (!"0".contentEquals(opsi));
@@ -82,36 +82,36 @@ public class UpdateBuku {
         return filtered;
     }
 
-    private void validasiIsiData(List<DataBuku> listDataBuku) {
+    private void validasiIsiData(List<Buku> listBuku) {
         switch (jenisAtribut) {
             case KODEBUKU:
-                validasiKodeBuku(listDataBuku);
+                validasiKodeBuku(listBuku);
                 break;
             case JUDULBUKU:
-                getJudulBukuSaatIni(listDataBuku);
+                getJudulBukuSaatIni(listBuku);
                 isiData = validasiInput("Judul Buku");
                 break;
             case PENULIS:
-                getPenulisSaatIni(listDataBuku);
+                getPenulisSaatIni(listBuku);
                 isiData = validasiInput("Penulis");
                 break;
             case PENERBIT:
-                getPenerbitSaatIni(listDataBuku);
+                getPenerbitSaatIni(listBuku);
                 isiData = validasiInput("Penerbit");
                 break;
             case TAHUNTERBIT:
-                getTahunTerbitSaatIni(listDataBuku);
+                getTahunTerbitSaatIni(listBuku);
                 validasiInput("Tahun Terbit", P_TAHUNTERBIT);
                 break;
         }
     }
 
-    private void validasiKodeBuku(List<DataBuku> listDataBuku) {
+    private void validasiKodeBuku(List<Buku> listBuku) {
         boolean sameValue = false;
         do {
-            getKodeBukuIni(listDataBuku);
+            getKodeBukuIni(listBuku);
             isiData = validasiInput("Kode Buku", P_KODEBUKU);
-            for (DataBuku buku : listDataBuku) {
+            for (Buku buku : listBuku) {
                 if (buku.getKodeBuku().contentEquals(isiData)) {
                     System.out.println("Kode buku sudah ada!");
                     sameValue = true;
@@ -123,8 +123,8 @@ public class UpdateBuku {
         } while (sameValue);
     }
 
-    private void getKodeBukuIni(List<DataBuku> listDataBuku) {
-        for (DataBuku buku : listDataBuku) {
+    private void getKodeBukuIni(List<Buku> listBuku) {
+        for (Buku buku : listBuku) {
             if (buku.getId() == id) {
                 System.out.println("Isi data saat ini : " + buku.getKodeBuku());
                 break;
@@ -132,8 +132,8 @@ public class UpdateBuku {
         }
     }
 
-    private void getJudulBukuSaatIni(List<DataBuku> listDataBuku) {
-        for (DataBuku buku : listDataBuku) {
+    private void getJudulBukuSaatIni(List<Buku> listBuku) {
+        for (Buku buku : listBuku) {
             if (buku.getId() == id) {
                 System.out.println("Isi data saat ini : " + buku.getJudulBuku());
                 break;
@@ -141,8 +141,8 @@ public class UpdateBuku {
         }
     }
 
-    private void getPenulisSaatIni(List<DataBuku> listDataBuku) {
-        for (DataBuku buku : listDataBuku) {
+    private void getPenulisSaatIni(List<Buku> listBuku) {
+        for (Buku buku : listBuku) {
             if (buku.getId() == id) {
                 System.out.println("Isi data saat ini : " + buku.getPenulis());
                 break;
@@ -150,8 +150,8 @@ public class UpdateBuku {
         }
     }
 
-    private void getPenerbitSaatIni(List<DataBuku> listDataBuku) {
-        for (DataBuku buku : listDataBuku) {
+    private void getPenerbitSaatIni(List<Buku> listBuku) {
+        for (Buku buku : listBuku) {
             if (buku.getId() == id) {
                 System.out.println("Isi data saat ini : " + buku.getPenerbit());
                 break;
@@ -159,8 +159,8 @@ public class UpdateBuku {
         }
     }
 
-    private void getTahunTerbitSaatIni(List<DataBuku> listDataBuku) {
-        for (DataBuku buku : listDataBuku) {
+    private void getTahunTerbitSaatIni(List<Buku> listBuku) {
+        for (Buku buku : listBuku) {
             if (buku.getId() == id) {
                 System.out.println("Isi data saat ini : " + buku.getTahunTerbit());
                 break;

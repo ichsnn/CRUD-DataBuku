@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import static main.cruddatabuku.util.Library.KODE_JENISBUKU;
 import static main.cruddatabuku.util.Library.PEMBATAS;
 
-public class DataBuku {
+public class Buku {
     private int id;
     private String kodeBuku;
     private String judulBuku;
@@ -15,10 +15,10 @@ public class DataBuku {
     private String penerbit;
     private String tahunTerbit;
 
-    public DataBuku() {
+    public Buku() {
     }
 
-    public DataBuku(int id, String kodeBuku, String judulBuku, String penulis, String penerbit, String tahunTerbit) {
+    public Buku(int id, String kodeBuku, String judulBuku, String penulis, String penerbit, String tahunTerbit) {
         this.id = id;
         this.kodeBuku = kodeBuku;
         this.judulBuku = judulBuku;
@@ -28,7 +28,7 @@ public class DataBuku {
         setJenisBuku(kodeBuku);
     }
 
-    public DataBuku(String id, String kodeBuku, String judulBuku, String penulis, String penerbit, String tahunTerbit) {
+    public Buku(String id, String kodeBuku, String judulBuku, String penulis, String penerbit, String tahunTerbit) {
         this.id = Integer.parseInt(id);
         this.kodeBuku = kodeBuku;
         this.judulBuku = judulBuku;

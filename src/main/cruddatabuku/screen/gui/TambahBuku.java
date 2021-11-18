@@ -1,6 +1,6 @@
 package main.cruddatabuku.screen.gui;
 
-import main.cruddatabuku.buku.DataBuku;
+import main.cruddatabuku.buku.Buku;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -30,13 +30,13 @@ public class TambahBuku extends JDialog implements ActionListener {
     JPanel container;
     JPanel inputContainer;
     JPanel buttonContainer;
-    private List<DataBuku> listDataBuku;
+    private List<Buku> listBuku;
     private boolean submit;
     private Object[] bukuBaru;
 
-    public TambahBuku(List<DataBuku> listDataBuku, String fileName) {
+    public TambahBuku(List<Buku> listBuku, String fileName) {
         submit = false;
-        this.listDataBuku = listDataBuku;
+        this.listBuku = listBuku;
         this.file = new File(fileName);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setIconImage(appIcon.getImage());
@@ -137,12 +137,12 @@ public class TambahBuku extends JDialog implements ActionListener {
         this.setVisible(true);
     }
 
-    public List<DataBuku> getListDataBuku() {
-        return listDataBuku;
+    public List<Buku> getListDataBuku() {
+        return listBuku;
     }
 
-    public void setListDataBuku(List<DataBuku> listDataBuku) {
-        this.listDataBuku = listDataBuku;
+    public void setListDataBuku(List<Buku> listBuku) {
+        this.listBuku = listBuku;
     }
 
     public boolean isSubmit() {
@@ -154,8 +154,8 @@ public class TambahBuku extends JDialog implements ActionListener {
         return matcher.matches();
     }
 
-    public boolean isKodeBukuExist(List<DataBuku> listDataBuku) {
-        for (DataBuku buku : listDataBuku) {
+    public boolean isKodeBukuExist(List<Buku> listBuku) {
+        for (Buku buku : listBuku) {
             if (buku.getKodeBuku().contentEquals(textFieldKodeBuku.getText())) {
                 return true;
             }
@@ -173,10 +173,10 @@ public class TambahBuku extends JDialog implements ActionListener {
         if (e.getSource() == submitButton) {
             int id;
             String kodeBuku, judulBuku, penulis, penerbit, tahunTerbit;
-            if (listDataBuku.isEmpty()) {
+            if (listBuku.isEmpty()) {
                 id = 1;
             } else {
-                id = listDataBuku.get(listDataBuku.size() - 1).getId() + 1;
+                id = listBuku.get(listBuku.size() - 1).getId() + 1;
             }
 
             kodeBuku = textFieldKodeBuku.getText();
@@ -188,7 +188,7 @@ public class TambahBuku extends JDialog implements ActionListener {
             boolean validasiKB, validasiThn, validasiBuku, validasiJudul, validasiPenulis, validasiPenerbit;
             validasiKB = isInputValid(textFieldKodeBuku.getText(), P_KODEBUKU);
             validasiThn = isInputValid(textFieldTahunTerbit.getText(), P_TAHUNTERBIT);
-            validasiBuku = !isKodeBukuExist(listDataBuku);
+            validasiBuku = !isKodeBukuExist(listBuku);
             validasiJudul = isStringValid(textFieldJudulBuku.getText());
             validasiPenulis = isStringValid(textFieldPenulis.getText());
             validasiPenerbit = isStringValid(textFieldPenerbit.getText());
@@ -196,10 +196,10 @@ public class TambahBuku extends JDialog implements ActionListener {
             boolean sukses = ((validasiKB && validasiThn && validasiJudul && validasiPenerbit && validasiPenulis) && validasiBuku);
 
             if (sukses) {
-                DataBuku buku = new DataBuku(id, kodeBuku, judulBuku, penulis, penerbit, tahunTerbit);
+                Buku buku = new Buku(id, kodeBuku, judulBuku, penulis, penerbit, tahunTerbit);
                 bukuBaru = new Object[]{id, kodeBuku, judulBuku, buku.getJenisBuku(), penulis, penerbit, tahunTerbit};
 
-                listDataBuku.add(buku);
+                listBuku.add(buku);
 
                 try {
                     FileWriter fileWriter = new FileWriter(file, true);

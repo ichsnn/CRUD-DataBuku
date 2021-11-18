@@ -1,6 +1,6 @@
 package main.cruddatabuku.screen.gui;
 
-import main.cruddatabuku.buku.DataBuku;
+import main.cruddatabuku.buku.Buku;
 import main.cruddatabuku.screen.gui.component.Button;
 import main.cruddatabuku.screen.gui.component.HelpJenisBuku;
 import main.cruddatabuku.screen.gui.component.MenuBar;
@@ -50,7 +50,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     };
     JScrollPane tablePane;
 
-    List<DataBuku> listDataBuku = new ArrayList<>();
+    List<Buku> listBuku = new ArrayList<>();
 
     Object[] tableHeader = {"ID", "Kode Buku", "Judul Buku", "Jenis Buku", "Penulis", "Penerbit", "Tahun Terbit"};
 
@@ -67,7 +67,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         this.fileName = file.getPath();
         this.setIconImage(appIcon.getImage());
 
-        sukses = memuatDataBuku(file, listDataBuku);
+        sukses = memuatDataBuku(file, listBuku);
 
         if (!sukses) {
             this.setTitle("Aplikasi Pengelola Daftar Buku - ERROR!");
@@ -224,7 +224,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnTambahBuku) {
-            tambahBukuDialog = new TambahBuku(listDataBuku, fileName);
+            tambahBukuDialog = new TambahBuku(listBuku, fileName);
         }
 
         if (e.getSource() == btnHapusBuku) {
@@ -239,7 +239,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                     objectsSelected[i] = defaultTableModel.getValueAt(rS, i);
                 }
 
-                updateBukuDialog = new UpdateBuku(objectsSelected, listDataBuku, fileName, rS);
+                updateBukuDialog = new UpdateBuku(objectsSelected, listBuku, fileName, rS);
 
             } else {
                 JOptionPane.showMessageDialog(this, "Seleksi salah satu data pada tabel terlebih dahulu", "Update Data", JOptionPane.INFORMATION_MESSAGE);
@@ -349,14 +349,14 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         }
 
         if (e.getSource() == menuBar.refresTable) {
-            listDataBuku.clear();
-            sukses = memuatDataBuku(new File(fileName), listDataBuku);
+            listBuku.clear();
+            sukses = memuatDataBuku(new File(fileName), listBuku);
 
             for (int i = defaultTableModel.getRowCount() - 1; i >= 0; i--) {
                 defaultTableModel.removeRow(i);
             }
 
-            for (DataBuku buku : listDataBuku) {
+            for (Buku buku : listBuku) {
                 if (buku == null) {
                     break;
                 }
@@ -405,7 +405,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                 }
 
                 for (String str : index) {
-                    deleteData(fileName, listDataBuku, Integer.parseInt(str));
+                    deleteData(fileName, listBuku, Integer.parseInt(str));
                 }
             }
         } else {
@@ -434,7 +434,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
 
     public void loadData() {
         if (sukses) {
-            for (DataBuku buku : listDataBuku) {
+            for (Buku buku : listBuku) {
                 if (buku == null) {
                     break;
                 }
@@ -442,7 +442,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
             }
         } else {
             boolean nullBooks = false;
-            for (DataBuku buku : listDataBuku) {
+            for (Buku buku : listBuku) {
                 if (buku == null) {
                     nullBooks = true;
                     break;
