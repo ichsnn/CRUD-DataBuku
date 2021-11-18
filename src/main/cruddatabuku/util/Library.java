@@ -5,6 +5,7 @@ Library.java | digunakan untuk menampung semua variable yang sering digunakan.
 package main.cruddatabuku.util;
 
 import javax.swing.*;
+import java.io.File;
 import java.net.URL;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -68,4 +69,6 @@ public interface Library {
     static void printPressEnter() {
         System.out.println("Tekan [Enter] untuk kemabali...");
     }
+
+    File recentFile = new File("recent-file.txt");
 }

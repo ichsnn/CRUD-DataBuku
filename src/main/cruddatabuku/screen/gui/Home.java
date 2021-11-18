@@ -12,12 +12,13 @@ import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
+import java.io.*;
+import java.util.*;
+import java.util.List;
 
 import static main.cruddatabuku.screen.gui.component.UIManagerMethod.setUI;
 import static main.cruddatabuku.util.Library.appIcon;
+import static main.cruddatabuku.util.Library.recentFile;
 
 public class Home extends JFrame implements ActionListener {
     JFileChooser fileChooser;
@@ -33,6 +34,7 @@ public class Home extends JFrame implements ActionListener {
     JLabel label1;
     JLabel labelTitle;
     JTextField textField;
+    JComboBox<String> recentFileField;
     File file;
 
     public Home() {
@@ -49,16 +51,32 @@ public class Home extends JFrame implements ActionListener {
         fileChooserButton.setBounds(0, 0, 16, 16);
         fileChooserButton.addActionListener(this);
 
-        file = new File("./data/dataBuku.txt");
-        label1 = new JLabel("File : ");
-        textField = new JTextField();
-        textField.setBackground(Color.white);
-        textField.setPreferredSize(new Dimension(100, 16));
-        if (file.exists()) {
-            textField.setText(file.getPath());
-            textField.setCaretPosition(file.getPath().length());
+        recentFileField = new JComboBox<>();
+        recentFileField.addActionListener(this);
+        recentFileField.setEditable(true);
+        try {
+            FileReader recentFileReader = new FileReader(recentFile);
+            Scanner scan = new Scanner(recentFileReader);
+            String recentFile;
+            while (scan.hasNextLine()) {
+                recentFile = scan.nextLine();
+                recentFileField.addItem(recentFile);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        textField.setMargin(new Insets(5, 10, 5, 10));
+        recentFileField.setFont(new Font(Font.DIALOG, Font.PLAIN, 12));
+
+        //file = new File("./data/dataBuku.txt");
+        label1 = new JLabel("File : ");
+        //textField = new JTextField();
+        //textField.setBackground(Color.white);
+        //textField.setPreferredSize(new Dimension(100, 16));
+        //if (file.exists()) {
+        //    textField.setText(file.getPath());
+        //    textField.setCaretPosition(file.getPath().length());
+        //}
+        //textField.setMargin(new Insets(5, 10, 5, 10));
 
         bukaButton.addActionListener(this);
         keluarButton.addActionListener(this);
@@ -78,7 +96,7 @@ public class Home extends JFrame implements ActionListener {
         folderPanel.setLayout(new BorderLayout(5, 10));
         folderPanel.add(label1, BorderLayout.WEST);
         folderPanel.add(fileChooserButton, BorderLayout.EAST);
-        folderPanel.add(textField, BorderLayout.CENTER);
+        folderPanel.add(recentFileField, BorderLayout.CENTER);
         folderPanel.add(buttonContainer, BorderLayout.SOUTH);
 
         container = new JPanel();
@@ -109,6 +127,11 @@ public class Home extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //if (e.getSource() == recentFileField) {
+        //    file = new File(recentFileField.getSelectedItem().toString());
+        //    System.out.println(file.getPath());
+        //}
+
         if (e.getSource() == fileChooserButton) {
             setUI(UIManager.getSystemLookAndFeelClassName());
 
@@ -136,20 +159,36 @@ public class Home extends JFrame implements ActionListener {
             int respon = fileChooser.showOpenDialog(this);
             if (respon == JFileChooser.APPROVE_OPTION) {
                 file = fileChooser.getSelectedFile();
-                textField.setText(file.getPath());
+                recentFileField.setSelectedItem(file.getPath());
             }
 
             setUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
 
         if (e.getSource() == bukaButton) {
-            if (!textField.getText().isEmpty() && textField.getText().contains(".txt")) {
-                file = new File(textField.getText());
-                new Editor(file);
-                this.dispose();
+            File opennedFile = new File((String) Objects.requireNonNull(recentFileField.getSelectedItem()));
+            if (opennedFile.exists()) {
+                List<String> recentFileName = new ArrayList<>();
+                for (int i = 0; i < recentFileField.getItemCount(); i++) {
+                    recentFileName.add(recentFileField.getItemAt(i));
+                }
+                if (!recentFileName.contains(opennedFile.getPath())) {
+                    try {
+                        FileWriter recentFileWriter = new FileWriter(recentFile, true);
+                        BufferedWriter bufferedWriter = new BufferedWriter(recentFileWriter);
+                        bufferedWriter.write((recentFile.length() != 0 ? "\n" : "") + opennedFile.getPath());
+                        bufferedWriter.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                if (recentFileField.getSelectedItem() != null) {
+                    new Editor(opennedFile);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Pilih file terlebih dahulu");
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Tuliskan file yang ingin dibuka dengan format file .txt !", "Buka File", JOptionPane.INFORMATION_MESSAGE);
-                textField.setFocusable(true);
+                JOptionPane.showMessageDialog(this, "File tidak ditemukan! File sepertinya telah dipindahkan, diganti nama atau dihapus\n(" + recentFileField.getSelectedItem() + ")", "Buka File", JOptionPane.WARNING_MESSAGE);
             }
         }
 
