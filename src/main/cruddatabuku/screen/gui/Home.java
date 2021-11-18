@@ -1,5 +1,5 @@
 /*
-GUIApp.java | Digunakan sebagai beranda aplikasi untuk memilih file yang ingin dibuka atau membuat file baru
+Home.java | Digunakan sebagai beranda aplikasi untuk memilih file yang ingin dibuka atau membuat file baru
  */
 
 package main.cruddatabuku.screen.gui;
@@ -19,7 +19,7 @@ import java.util.Objects;
 import static main.cruddatabuku.screen.gui.component.UIManagerMethod.setUI;
 import static main.cruddatabuku.util.Library.appIcon;
 
-public class GUIApp extends JFrame implements ActionListener {
+public class Home extends JFrame implements ActionListener {
     JFileChooser fileChooser;
 
     Button fileChooserButton = new Button();
@@ -35,7 +35,7 @@ public class GUIApp extends JFrame implements ActionListener {
     JTextField textField;
     File file;
 
-    public GUIApp() {
+    public Home() {
         labelTitle = new JLabel("APLIKASI PENGELOLA DAFTAR BUKU");
         labelTitle.setHorizontalAlignment(JLabel.CENTER);
         labelTitle.setFont(new Font("Calibri", Font.BOLD, 24));
@@ -52,7 +52,6 @@ public class GUIApp extends JFrame implements ActionListener {
         file = new File("./data/dataBuku.txt");
         label1 = new JLabel("File : ");
         textField = new JTextField();
-        //textField.setFont(new Font("Calibri", Font.PLAIN, 16));
         textField.setBackground(Color.white);
         textField.setPreferredSize(new Dimension(100, 16));
         if (file.exists()) {
