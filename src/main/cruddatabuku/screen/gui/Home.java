@@ -35,7 +35,6 @@ public class Home extends JFrame implements ActionListener {
     JPanel folderPanel;
     JLabel label1;
     JLabel labelTitle;
-    JTextField textField;
     JComboBox<String> recentFileField;
     File file;
 
@@ -56,29 +55,23 @@ public class Home extends JFrame implements ActionListener {
         recentFileField = new JComboBox<>();
         recentFileField.addActionListener(this);
         recentFileField.setEditable(true);
-        try {
-            FileReader recentFileReader = new FileReader(recentFile);
-            Scanner scan = new Scanner(recentFileReader);
-            String recentFile;
-            while (scan.hasNextLine()) {
-                recentFile = scan.nextLine();
-                recentFileField.addItem(recentFile);
+        if (recentFile.exists()) {
+            try {
+                FileReader recentFileReader = new FileReader(recentFile);
+                Scanner scan = new Scanner(recentFileReader);
+                String recentFile;
+                while (scan.hasNextLine()) {
+                    recentFile = scan.nextLine();
+                    recentFileField.addItem(recentFile);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         recentFileField.setFont(new Font(Font.DIALOG, Font.PLAIN, 12));
+        recentFileField.setPreferredSize(new Dimension(129, 25));
 
-        //file = new File("./data/dataBuku.txt");
         label1 = new JLabel("File : ");
-        //textField = new JTextField();
-        //textField.setBackground(Color.white);
-        //textField.setPreferredSize(new Dimension(100, 16));
-        //if (file.exists()) {
-        //    textField.setText(file.getPath());
-        //    textField.setCaretPosition(file.getPath().length());
-        //}
-        //textField.setMargin(new Insets(5, 10, 5, 10));
 
         bukaButton.addActionListener(this);
         keluarButton.addActionListener(this);
@@ -129,11 +122,8 @@ public class Home extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //if (e.getSource() == recentFileField) {
-        //    file = new File(recentFileField.getSelectedItem().toString());
-        //    System.out.println(file.getPath());
-        //}
 
+        // button memilih file yang ingin dibuka
         if (e.getSource() == fileChooserButton) {
             setUI(UIManager.getSystemLookAndFeelClassName());
 
@@ -161,37 +151,68 @@ public class Home extends JFrame implements ActionListener {
             int respon = fileChooser.showOpenDialog(this);
             if (respon == JFileChooser.APPROVE_OPTION) {
                 file = fileChooser.getSelectedFile();
-                recentFileField.setSelectedItem(file.getPath());
+                recentFileField.setSelectedItem(file.getAbsolutePath());
             }
 
             setUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
 
+        // button untuk membuka file atau membuka editor
         if (e.getSource() == bukaButton) {
-            File opennedFile = new File((String) Objects.requireNonNull(recentFileField.getSelectedItem()));
-            List<String> recentFileName = new ArrayList<>();
-            for (int i = 0; i < recentFileField.getItemCount(); i++) {
-                recentFileName.add(recentFileField.getItemAt(i));
-            }
-            if (opennedFile.exists()) {
-                if (!recentFileName.contains(opennedFile.getPath())) {
-                    recentFileName.add(0, (String) recentFileField.getSelectedItem());
-                    try {
-                        FileWriter recentFileWriter = new FileWriter(recentFile);
-                        BufferedWriter bufferedWriter = new BufferedWriter(recentFileWriter);
-                        for (int i = 0; i < recentFileName.size(); i++) {
-                            if (i >= 5) break;
-                            bufferedWriter.write((i != 0 ? "\n" : "") + recentFileName.get(i));
+            if (recentFileField.getSelectedItem() != null) {
+                File opennedFile = new File((String) Objects.requireNonNull(recentFileField.getSelectedItem()));
+                List<String> recentFileName = new ArrayList<>();
+                for (int i = 0; i < recentFileField.getItemCount(); i++) {
+                    recentFileName.add(recentFileField.getItemAt(i));
+                }
+                if (opennedFile.exists()) {
+                    if (!recentFileName.contains(opennedFile.getPath())) {
+                        recentFileName.add(0, (String) recentFileField.getSelectedItem());
+                        try {
+                            if (!recentFile.exists()) {
+                                boolean created = recentFile.createNewFile();
+                                System.out.println(created);
+                            }
+                            FileWriter recentFileWriter = new FileWriter(recentFile);
+                            BufferedWriter bufferedWriter = new BufferedWriter(recentFileWriter);
+                            for (int i = 0; i < recentFileName.size(); i++) {
+                                if (i >= 5) break;
+                                bufferedWriter.write((i != 0 ? "\n" : "") + recentFileName.get(i));
+                            }
+                            bufferedWriter.close();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
                         }
-                        bufferedWriter.close();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+                    } else {
+                        for (int i = 0; i < recentFileName.size(); i++) {
+                            if (recentFileName.get(i).equals(recentFileField.getSelectedItem())) {
+                                recentFileName.remove(i);
+                                recentFileName.add(0, (String) recentFileField.getSelectedItem());
+                                try {
+                                    FileWriter recentFileWriter = new FileWriter(recentFile);
+                                    BufferedWriter bufferedWriter = new BufferedWriter(recentFileWriter);
+                                    for (int j = 0; j < recentFileName.size(); j++) {
+                                        bufferedWriter.write((j != 0 ? "\n" : "") + recentFileName.get(j));
+                                    }
+                                    bufferedWriter.close();
+                                } catch (IOException ex) {
+                                    ex.printStackTrace();
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    if (recentFileField.getSelectedItem() != null) {
+                        new Editor(opennedFile);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Pilih file terlebih dahulu");
                     }
                 } else {
+                    JOptionPane.showMessageDialog(this, "File tidak ditemukan! File sepertinya telah dipindahkan, diganti nama atau dihapus\n(" + recentFileField.getSelectedItem() + ")", "Buka File", JOptionPane.WARNING_MESSAGE);
                     for (int i = 0; i < recentFileName.size(); i++) {
                         if (recentFileName.get(i).equals(recentFileField.getSelectedItem())) {
                             recentFileName.remove(i);
-                            recentFileName.add(0, (String) recentFileField.getSelectedItem());
                             try {
                                 FileWriter recentFileWriter = new FileWriter(recentFile);
                                 BufferedWriter bufferedWriter = new BufferedWriter(recentFileWriter);
@@ -202,48 +223,27 @@ public class Home extends JFrame implements ActionListener {
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }
+                            recentFileField.removeAllItems();
+                            for (String s : recentFileName) {
+                                recentFileField.addItem(s);
+                            }
                             break;
                         }
                     }
                 }
-
-                if (recentFileField.getSelectedItem() != null) {
-                    new Editor(opennedFile);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Pilih file terlebih dahulu");
-                }
             } else {
-                JOptionPane.showMessageDialog(this, "File tidak ditemukan! File sepertinya telah dipindahkan, diganti nama atau dihapus\n(" + recentFileField.getSelectedItem() + ")", "Buka File", JOptionPane.WARNING_MESSAGE);
-                for (int i = 0; i < recentFileName.size(); i++) {
-                    if (recentFileName.get(i).equals(recentFileField.getSelectedItem())) {
-                        recentFileName.remove(i);
-                        try {
-                            FileWriter recentFileWriter = new FileWriter(recentFile);
-                            BufferedWriter bufferedWriter = new BufferedWriter(recentFileWriter);
-                            for (int j = 0; j < recentFileName.size(); j++) {
-                                bufferedWriter.write((j != 0 ? "\n" : "") + recentFileName.get(j));
-                            }
-                            bufferedWriter.close();
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                        recentFileField.removeAllItems();
-                        for (String s : recentFileName) {
-                            recentFileField.addItem(s);
-                        }
-                        break;
-                    }
-                }
+                JOptionPane.showMessageDialog(this, "Pilih terlebih dahulu file yang ingin dibuka atau buat file baru");
             }
         }
 
+        // button keluar program atau mengakhiri program
         if (e.getSource() == keluarButton) {
             this.dispose();
         }
 
+        // button membuat file baru
         if (e.getSource() == buatFileButton) {
             setUI(UIManager.getSystemLookAndFeelClassName());
-
             JFileChooser createFile = new JFileChooser();
             if (new File("./data").exists()) {
                 createFile.setCurrentDirectory(new File("./data"));
@@ -266,7 +266,6 @@ public class Home extends JFrame implements ActionListener {
                 }
 
             });
-            createFile.setCurrentDirectory(new File("./data"));
             createFile.setDialogTitle("Crate New File");
 
             boolean notReapet = false;
@@ -286,6 +285,23 @@ public class Home extends JFrame implements ActionListener {
                             if (success) {
                                 file = newFile;
                                 setUI(UIManager.getCrossPlatformLookAndFeelClassName());
+                                if (!recentFile.exists()) {
+                                    boolean created = recentFile.createNewFile();
+                                    System.out.println(created);
+                                }
+                                List<String> recentFileName = new ArrayList<>();
+                                if (recentFileField.getSelectedItem() != null) {
+                                    for (int i = 0; i < recentFileField.getItemCount(); i++) {
+                                        recentFileName.add(recentFileField.getItemAt(i));
+                                    }
+                                }
+                                recentFileName.add(0, String.valueOf(file));
+                                FileWriter fileWriter = new FileWriter(recentFile);
+                                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                                for (int i = 0; i < recentFileName.size(); i++) {
+                                    bufferedWriter.write((i != 0 ? "\n" : "") + recentFileName.get(i));
+                                }
+                                bufferedWriter.close();
                                 new Editor(file);
                                 this.dispose();
                                 notReapet = true;
