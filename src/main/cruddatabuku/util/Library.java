@@ -26,31 +26,23 @@ public interface Library {
 
     // digunakan untuk menuliskan membuat keterangan jenis buku
     String[][] KODE_JENISBUKU = {
-            {"^0[0]{2,2}$", "Karya Umum"},
-            {"^1[0]{2,2}$", "Filsafat"},
-            {"^2[0]{2,2}$", "Agama"},
-            {"^3[0]{2,2}$", "Ilmu Sosial"},
-            {"^4[0]{2,2}$", "Bahasa"},
-            {"^5[0]{2,2}$", "Ilmu Murni"},
-            {"^6[0]{2,2}$", "Pengetahuan Praktis"},
-            {"^7[0]{2,2}$", "Kesenian dan Hiburan"},
-            {"^8[0]{2,2}$", "Kesusatraan"},
-            {"^9[0]{2,2}$", "Sejarah"},
+            {"^0[0]{2,2}$", "Karya Umum"},              // 000
+            {"^1[0]{2,2}$", "Filsafat"},                // 100
+            {"^2[0]{2,2}$", "Agama"},                   // 200
+            {"^3[0]{2,2}$", "Ilmu Sosial"},             // 300
+            {"^4[0]{2,2}$", "Bahasa"},                  // 400
+            {"^5[0]{2,2}$", "Ilmu Murni"},              // 500
+            {"^6[0]{2,2}$", "Pengetahuan Praktis"},     // 600
+            {"^7[0]{2,2}$", "Kesenian dan Hiburan"},    // 700
+            {"^8[0]{2,2}$", "Kesusatraan"},             // 800
+            {"^9[0]{2,2}$", "Sejarah"},                 // 900
     };
     // App Icon
     URL appIconURL = Library.class.getClassLoader().getResource("assets/icon.png");
     ImageIcon appIcon = new ImageIcon(Objects.requireNonNull(appIconURL));
 
-    static void printExist() {
-        System.out.println("Data uku sudah ada!");
-    }
-
     static void printError() {
         System.out.println("Error!");
-    }
-
-    static void printWrong() {
-        System.out.println("Terjadi kesalahan!");
     }
 
     static void printUpdateSuccess() {
@@ -66,9 +58,6 @@ public interface Library {
         System.out.flush();
     }
 
-    static void printPressEnter() {
-        System.out.println("Tekan [Enter] untuk kemabali...");
-    }
-
+    // digunakan untuk mencatat riwayat file yang pernah dibuka sebelumnya
     File recentFile = new File("recent-file.txt");
 }

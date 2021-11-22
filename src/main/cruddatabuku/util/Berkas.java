@@ -20,6 +20,7 @@ import static main.cruddatabuku.util.Library.*;
 
 public interface Berkas {
 
+    // memuat data buku dari flat file kemudian disimpan kedalam memori berbentuk arrayList
     static boolean memuatDataBuku(File file, List<Buku> listBuku) {
         if (file.exists()) {
             if (file.length() != 0) {
@@ -52,6 +53,7 @@ public interface Berkas {
         return false;
     }
 
+    // menampilkan list data buku dari arrayList yang sudah dibuat
     static void tampilData(List<Buku> listBuku) {
         if (!listBuku.isEmpty()) {
             int i = 0;
@@ -67,6 +69,7 @@ public interface Berkas {
         }
     }
 
+    // menampilkan list data buku sesuai dengan apa yang dicari
     static void tampilData(List<Buku> listBuku, String jenisAtribut, String dicari) {
         List<Buku> temp = new ArrayList<>();
         Pattern p = Pattern.compile(dicari, Pattern.CASE_INSENSITIVE);
@@ -112,6 +115,7 @@ public interface Berkas {
         }
     }
 
+    // menambah data buku dengan menuliskan kedalam flat file serta menyimpannya kedalam arrayList ketika program berjalan
     static void tambahData(File file, List<Buku> listBuku) {
         Scanner input = new Scanner(System.in);
         int lastID = 0;
@@ -162,6 +166,7 @@ public interface Berkas {
         listBuku.add(buku);
     }
 
+    // mengupdate data buku, sama seperti fungsi tambahData() untuk prosesnya dan mengupdate data buku sesuai jenis atribut apa yang ingin diupdate
     static void updateData(String fileName, List<Buku> listBuku, int id, String jenisAtribut, String isiData) {
         jenisAtribut = jenisAtribut.toUpperCase();
         for (Buku buku : listBuku) {
@@ -188,6 +193,8 @@ public interface Berkas {
         update(fileName, listBuku);
     }
 
+    // digunakan untuk fungsi updateData() dan juga pada UpdateBuku yang ada package gui
+    // fungsi ini untuk menuliskan data yang diupdate pada flat file
     static void update(String fileName, List<Buku> listBuku) {
         File file = new File(fileName);
         try {
@@ -208,6 +215,7 @@ public interface Berkas {
         }
     }
 
+    // digunakan untuk menghapus data pada listBuku dan pada flat file sesuai nomor id yang ingin dihapus
     static void deleteData(String fileName, List<Buku> listBuku, int id) {
         int listIndex = 0;
         boolean ketemu = false;
@@ -227,6 +235,7 @@ public interface Berkas {
         }
     }
 
+    // digunakan untuk menghapus semua data.
     static void deleteSemuaData(String fileName, List<Buku> listBuku) {
         if (listBuku.isEmpty()) {
             System.out.print("Isi file kosong!");
@@ -237,12 +246,14 @@ public interface Berkas {
         }
     }
 
+    // digunakan untuk membuat list sementara (temporary) yang menampung data yang sesuai dengan matcher nya
     static void addTempList(Matcher m, Buku buku, List<Buku> list) {
         if (m.find()) {
             list.add(createBuku(buku.getTxtFormat()));
         }
     }
 
+    // digunakan untuk membuat objek buku dari flat file. lihat fungsi memuatDataBuku()
     static Buku createBuku(String data) {
         String[] dataBuku = data.split(String.valueOf(PEMBATAS));
         if (dataBuku.length == 6) {
@@ -251,6 +262,7 @@ public interface Berkas {
         return null;
     }
 
+    // digunakan untuk memvalidasi data dari flat file jika ada data yang tidak sesuai baik pemisah nya atau jumlah data nya
     static boolean validasiData(Scanner readFile) {
         int minPembatas = 0;
         int maxPembatas = 0;
@@ -274,6 +286,7 @@ public interface Berkas {
         return (minPembatas == maxPembatas);
     }
 
+    // digunakan pada tampilan console
     static String validasiInput(String namaInputan) {
         String stringValid = null;
         try {
@@ -286,6 +299,7 @@ public interface Berkas {
         return stringValid;
     }
 
+    // digunakan untuk tampilan console, menggunakan pattern untuk menentukan inputan valid atau tidak
     static String validasiInput(String namaInputan, Pattern pattern) {
         Matcher matcher;
         String stringValid = null;
