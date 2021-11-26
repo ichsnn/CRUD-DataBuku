@@ -1,10 +1,10 @@
 package main.cruddatabuku.screen.gui;
 
 import main.cruddatabuku.buku.Buku;
-import main.cruddatabuku.screen.gui.helpmenu.HelpGuide;
 import main.cruddatabuku.screen.gui.component.Button;
-import main.cruddatabuku.screen.gui.helpmenu.HelpJenisBuku;
 import main.cruddatabuku.screen.gui.component.MenuBar;
+import main.cruddatabuku.screen.gui.helpmenu.HelpGuide;
+import main.cruddatabuku.screen.gui.helpmenu.HelpJenisBuku;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -491,7 +491,6 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
 
     @Override
     public void windowActivated(WindowEvent e) {
-
         if (e.getOppositeWindow() != null) {
             if (e.getOppositeWindow().getClass().getName().contains("TambahBuku")) {
                 if (tambahBukuDialog.isSubmit()) {

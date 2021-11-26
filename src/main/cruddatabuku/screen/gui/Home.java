@@ -204,6 +204,7 @@ public class Home extends JFrame implements ActionListener {
                     }
 
                     if (recentFileField.getSelectedItem() != null) {
+                        this.dispose();
                         new Editor(opennedFile);
                     } else {
                         JOptionPane.showMessageDialog(this, "Pilih file terlebih dahulu");

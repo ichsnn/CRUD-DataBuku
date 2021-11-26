@@ -1,3 +1,7 @@
+/*
+  Digunakan untuk merubah tampilan component gui menjadi bawaan sistem
+ */
+
 package main.cruddatabuku.screen.gui.component;
 
 import javax.swing.*;
