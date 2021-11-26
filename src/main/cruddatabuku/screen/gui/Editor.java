@@ -272,10 +272,10 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
             });
             int respon = fileChooser.showOpenDialog(this);
             if (respon == JFileChooser.APPROVE_OPTION) {
+                setUI(UIManager.getCrossPlatformLookAndFeelClassName());
                 new Editor(fileChooser.getSelectedFile());
                 this.dispose();
             }
-            setUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
 
         if (e.getSource() == menuBar.createItem) {
