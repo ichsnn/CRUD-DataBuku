@@ -31,7 +31,7 @@ public class UpdateBuku extends JDialog implements ActionListener {
     JTextField textFieldPenerbit;
     JTextField textFieldTahunTerbit;
     private String kodeBuku, judulBuku, penulis, penerbit, tahunTerbit;
-    private List<Buku> listBuku;
+    private final List<Buku> listBuku;
     private boolean submit;
     private Object[] bukuBaru;
 
@@ -149,14 +149,6 @@ public class UpdateBuku extends JDialog implements ActionListener {
         this.pack();
         this.setLocationRelativeTo(this.getParent());
         this.setVisible(true);
-    }
-
-    public List<Buku> getListDataBuku() {
-        return listBuku;
-    }
-
-    public void setListDataBuku(List<Buku> listBuku) {
-        this.listBuku = listBuku;
     }
 
     public boolean isSubmit() {

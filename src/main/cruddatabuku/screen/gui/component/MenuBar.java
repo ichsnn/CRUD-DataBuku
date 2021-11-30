@@ -17,6 +17,7 @@ public class MenuBar extends JMenuBar {
 
     // for editMenu
     public JMenuItem selectAll = new JMenuItem("Seleksi Semua");
+    public JMenuItem deselect = new JMenuItem("Deselect");
     public JMenuItem refresTable = new JMenuItem("Refresh");
 
     // for helpHemu
@@ -38,6 +39,7 @@ public class MenuBar extends JMenuBar {
         fileMenu.add(exitItem);
 
         editMenu.add(selectAll);
+        editMenu.add(deselect);
         editMenu.add(refresTable);
 
         helpMenu.add(helpGuide);

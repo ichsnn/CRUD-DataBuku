@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.plaf.basic.BasicScrollPaneUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -36,8 +37,6 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
     Button btnUpdateBuku = new Button("Update Buku");
     Button btnHapusBuku = new Button("Hapus Buku");
 
-    JPanel topPanel;
-    JPanel titlePanel;
     JPanel bottomPanel;
     JPanel containerPanel;
 
@@ -144,8 +143,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         tablePane.setBackground(Color.white);
         tablePane.setOpaque(true);
         tablePane.getViewport().setBackground(Color.white);
-
-        // styling topPanel
+        tablePane.setUI(new BasicScrollPaneUI());
 
         pencarian = new JTextField();
         pencarian.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -203,6 +201,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         menuBar.exitItem.addActionListener(this);
         // edit menu
         menuBar.selectAll.addActionListener(this);
+        menuBar.deselect.addActionListener(this);
         menuBar.refresTable.addActionListener(this);
         // help menu
         menuBar.helpGuide.addActionListener(this);
@@ -347,6 +346,10 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
 
         if (e.getSource() == menuBar.selectAll) {
             table.selectAll();
+        }
+
+        if (e.getSource() == menuBar.deselect) {
+            defaultTableModel.fireTableDataChanged();
         }
 
         if (e.getSource() == menuBar.refresTable) {
