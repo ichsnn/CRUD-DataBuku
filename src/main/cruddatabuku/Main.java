@@ -1,5 +1,6 @@
 package main.cruddatabuku;
 
+import main.cruddatabuku.screen.console.ConsoleApp;
 import main.cruddatabuku.screen.gui.Home;
 
 import java.io.File;
@@ -17,6 +18,6 @@ public class Main {
         new Home();
 
         // jika ingin melihat tampilan console tuliskan :
-        // new MainMenu();
+        // new ConsoleApp();
     }
 }
