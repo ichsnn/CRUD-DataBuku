@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="CRUD-DataBuku:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/CRUD_DataBuku_jar</output-path>
-    <root id="archive" name="CRUD-DataBuku.jar">
-      <element id="module-output" name="CRUD-DataBuku" />
-      <element id="dir-copy" path="$PROJECT_DIR$/resource" />
-    </root>
-  </artifact>
-</component>
