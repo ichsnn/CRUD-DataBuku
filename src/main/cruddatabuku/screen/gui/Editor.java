@@ -1,5 +1,11 @@
 package main.cruddatabuku.screen.gui;
 
+/*
+  Import package yang digunakan.
+  Untuk tampilan gui menggunakan library javax.swing
+  Untuk event listener mengambil dari library java.awt
+ */
+
 import main.cruddatabuku.buku.Buku;
 import main.cruddatabuku.screen.gui.component.Button;
 import main.cruddatabuku.screen.gui.component.MenuBar;
@@ -30,6 +36,10 @@ import static main.cruddatabuku.util.Berkas.deleteData;
 import static main.cruddatabuku.util.Berkas.memuatDataBuku;
 import static main.cruddatabuku.util.Library.appIcon;
 
+/**
+ * Editor, class digunakan untuk memanage tampilan yang menyangkut editor utama
+ * memiliki fitur utama yaitu melihat data berbentuk tabel, menambah data, mengupdate data, dan menghapus data
+ */
 public class Editor extends JFrame implements ActionListener, DocumentListener, WindowListener {
     private final String fileName;
 
@@ -74,7 +84,6 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         } else {
             this.setTitle("Aplikasi Pengelola Daftar Buku (" + fileName + ")");
         }
-
 
         // Button
         btnTambahBuku.addActionListener(this);
@@ -221,16 +230,72 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
         this.setVisible(true);
     }
 
+    /**
+     * Digunakan untuk menghapus buku.
+     * Caranya dengan menyeleksi 1 baris atau lebih lalu tekan tombol hapus buku
+     */
+    private void hapusBuku() {
+        if (table.getSelectedRows().length != 0) {
+            int respon = JOptionPane.showConfirmDialog(this, "Apakah anda ingin menghapus data ini ?", "Hapus Data", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (respon == 0) {
+                String[] index = new String[table.getSelectedRows().length];
+                int[] rowIndexToRemove = new int[table.getSelectedRows().length];
+                int i = 0;
+                for (int data : table.getSelectedRows()) {
+                    index[i] = String.valueOf(table.getValueAt(data, 0));
+                    rowIndexToRemove[i] = data;
+                    i++;
+                }
+
+                for (int k = defaultTableModel.getRowCount() - 1; k >= 0; k--) {
+                    /* Salah karena hanya mengapus baris berdasarkan seleksi yang terurut
+                    for (int l = rowIndexToRemove.length - 1; l >= 0; l--) {
+                        if (k == l) {
+                            defaultTableModel.removeRow(k);
+                        }
+                    }
+                     */
+                    for (int row : rowIndexToRemove) {
+                        if (k == row) {
+                            defaultTableModel.removeRow(k);
+                        }
+                    }
+                }
+
+                for (String str : index) {
+                    deleteData(fileName, listBuku, Integer.parseInt(str));
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleksi / Pilih terlebih dahulu data yang ingin dihapus", "Hapus Data", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    /**
+     * Digunakan untuk melakukan pencarian data dengan memasukkan data yang dicari di textfield cari
+     * Pencarian dilakukan secara menyeluruh, jadi jika memasukkan data yang ingin dicari harus spesifik
+     */
+    public void search(String str) {
+        if (str.isEmpty()) {
+            tableRowSorter.setRowFilter(null);
+        } else {
+            tableRowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + str));
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        // buka dialog tambah buku
         if (e.getSource() == btnTambahBuku) {
             tambahBukuDialog = new TambahBuku(listBuku, fileName);
         }
 
+        // lakukan hapus buku
         if (e.getSource() == btnHapusBuku) {
             hapusBuku();
         }
 
+        // buka dialog update buku
         if (e.getSource() == btnUpdateBuku) {
             if (table.getSelectedRows().length == 1) {
                 int rS = table.getSelectedRow(); // row selected
@@ -246,6 +311,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
             }
         }
 
+        // event menu file > buka file
         if (e.getSource() == menuBar.loadItem) {
             setUI(UIManager.getSystemLookAndFeelClassName());
             JFileChooser fileChooser = new JFileChooser();
@@ -277,6 +343,7 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
             }
         }
 
+        // event menu file > buat file
         if (e.getSource() == menuBar.createItem) {
             File newFile;
             setUI(UIManager.getSystemLookAndFeelClassName());
@@ -335,23 +402,28 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
             setUI(UIManager.getCrossPlatformLookAndFeelClassName());
         }
 
+        // event menu file > tutup editor
         if (e.getSource() == menuBar.closeItem) {
             new Home();
             this.dispose();
         }
 
+        // event menu file > keluar aplikasi
         if (e.getSource() == menuBar.exitItem) {
             this.dispose();
         }
 
+        // event menu edit > seleksi semua
         if (e.getSource() == menuBar.selectAll) {
             table.selectAll();
         }
 
+        // event menu edit > deselect
         if (e.getSource() == menuBar.deselect) {
             defaultTableModel.fireTableDataChanged();
         }
 
+        // event menu edit > refresh tabel
         if (e.getSource() == menuBar.refresTable) {
             listBuku.clear();
             sukses = memuatDataBuku(new File(fileName), listBuku);
@@ -369,51 +441,14 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
             defaultTableModel.fireTableDataChanged();
         }
 
+        // event menu bantuan > petunjuk
         if (e.getSource() == menuBar.helpGuide) {
             new HelpGuide();
         }
 
+        // event menu bantuan > jenis buku
         if (e.getSource() == menuBar.jenisBuku) {
             new HelpJenisBuku();
-        }
-
-
-    }
-
-    private void hapusBuku() {
-        if (table.getSelectedRows().length != 0) {
-            int respon = JOptionPane.showConfirmDialog(this, "Apakah anda ingin menghapus data ini ?", "Hapus Data", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (respon == 0) {
-                String[] index = new String[table.getSelectedRows().length];
-                int[] rowIndexToRemove = new int[table.getSelectedRows().length];
-                int i = 0;
-                for (int data : table.getSelectedRows()) {
-                    index[i] = String.valueOf(table.getValueAt(data, 0));
-                    rowIndexToRemove[i] = data;
-                    i++;
-                }
-
-                for (int k = defaultTableModel.getRowCount() - 1; k >= 0; k--) {
-                    /* Salah karena hanya mengapus baris berdasarkan seleksi yang terurut
-                    for (int l = rowIndexToRemove.length - 1; l >= 0; l--) {
-                        if (k == l) {
-                            defaultTableModel.removeRow(k);
-                        }
-                    }
-                     */
-                    for (int row : rowIndexToRemove) {
-                        if (k == row) {
-                            defaultTableModel.removeRow(k);
-                        }
-                    }
-                }
-
-                for (String str : index) {
-                    deleteData(fileName, listBuku, Integer.parseInt(str));
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleksi / Pilih terlebih dahulu data yang ingin dihapus", "Hapus Data", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -456,14 +491,6 @@ public class Editor extends JFrame implements ActionListener, DocumentListener, 
                 JOptionPane.showMessageDialog(this, "Terdapat kesalahan format dalam file!", "Error", JOptionPane.WARNING_MESSAGE);
             } else
                 JOptionPane.showMessageDialog(this, "File / Folder tidak ditemukan!", "Error", JOptionPane.WARNING_MESSAGE);
-        }
-    }
-
-    public void search(String str) {
-        if (str.isEmpty()) {
-            tableRowSorter.setRowFilter(null);
-        } else {
-            tableRowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + str));
         }
     }
 
