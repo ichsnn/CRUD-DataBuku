@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="CRUD-DataBuku:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="365113c3-1b8a-4681-8d47-91e693105403" name="Changes" comment="add java doc" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/cruddatabuku/buku/Buku.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://C:/Program Files/Java/jdk-11.0.13/lib/src.zip!/java.desktop/java/awt/GridLayout.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/cruddatabuku/util/Berkas.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/cruddatabuku/Main.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://C:/Program Files/Java/jdk-11.0.13/lib/src.zip!/java.desktop/javax/swing/JMenuBar.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/cruddatabuku/screen/console/ConsoleApp.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://C:/Program Files/Java/jdk-11.0.13/lib/src.zip!/java.desktop/javax/swing/border/EmptyBorder.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
+  <component name="ProjectId" id="20qf6jn63rrFvFnlbUirsPkYv8y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="214" />
+    <property name="introduce.parameter.lambda" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Data_Vaksinasi" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IDEA workspace\CRUD-DataBuku\src" />
+      <recent name="D:\IDEA workspace\CRUD-DataBuku\out\artifacts\CRUD_DataBuku_jar" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IDEA workspace\CRUD-DataBuku" />
+      <recent name="D:\IDEA workspace\CRUD-DataBuku\resource\assets" />
+      <recent name="D:\IDEA workspace\CRUD-DataBuku\assets\icon" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.cruddatabuku.Main" />
+      <module name="CRUD-DataBuku" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.cruddatabuku.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainConsole" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.cruddatabuku.MainConsole" />
+      <module name="CRUD-DataBuku" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.cruddatabuku.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainConsole" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="365113c3-1b8a-4681-8d47-91e693105403" name="Changes" comment="" />
+      <created>1636776867864</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636776867864</updated>
+    </task>
+    <task id="LOCAL-00001" summary="update ConsoleApp.java control stucture">
+      <created>1636886602147</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1636886602147</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update something useful">
+      <created>1636887599099</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636887599099</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix many bugs">
+      <created>1636896147274</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636896147274</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix many bugs">
+      <created>1636899072993</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1636899072993</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add delete data feature">
+      <created>1636942179366</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1636942179366</updated>
+    </task>
+    <task id="LOCAL-00006" summary="forgot to clear screen">
+      <created>1636942371173</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1636942371173</updated>
+    </task>
+    <task id="LOCAL-00007" summary="change folder structure for data file">
+      <created>1636942956072</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1636942956072</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix setJenisBuku bug">
+      <created>1636948414881</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1636948414881</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add gui display">
+      <created>1636960298305</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1636960298305</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix layouting">
+      <created>1636963672863</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1636963672864</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix many bugs">
+      <created>1636984694585</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1636984694585</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add launch display">
+      <created>1637038394367</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1637038394367</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add fiture add data and remove data">
+      <created>1637066687602</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1637066687603</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add update feature">
+      <created>1637072095524</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1637072095524</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update error handle file and folder not found">
+      <created>1637073069189</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1637073069189</updated>
+    </task>
+    <task id="LOCAL-00016" summary="clean up code">
+      <created>1637073519725</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1637073519725</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fix update bug">
+      <created>1637121276835</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1637121276835</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update assets directory">
+      <created>1637125147336</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1637125147336</updated>
+    </task>
+    <task id="LOCAL-00019" summary="add modality to prevent multiple dialog when call TambahBuku &amp; UpdateBuku">
+      <created>1637127815060</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1637127815060</updated>
+    </task>
+    <task id="LOCAL-00020" summary="improve quality">
+      <created>1637128809707</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1637128809707</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix id bug">
+      <created>1637130053030</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1637130053030</updated>
+    </task>
+    <task id="LOCAL-00022" summary="error handling">
+      <created>1637132489781</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1637132489781</updated>
+    </task>
+    <task id="LOCAL-00023" summary="add menu bar">
+      <created>1637135675687</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1637135675687</updated>
+    </task>
+    <task id="LOCAL-00024" summary="add edit menu">
+      <created>1637142695717</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1637142695717</updated>
+    </task>
+    <task id="LOCAL-00025" summary="add component package">
+      <created>1637149938125</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1637149938125</updated>
+    </task>
+    <task id="LOCAL-00026" summary="update UpdateBuku &amp; TambahBuku buttonUI">
+      <created>1637151262979</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1637151262979</updated>
+    </task>
+    <task id="LOCAL-00027" summary="add help menu">
+      <created>1637161043352</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1637161043352</updated>
+    </task>
+    <task id="LOCAL-00028" summary="rename class DataBuku.java to Buku.java">
+      <created>1637240012286</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1637240012286</updated>
+    </task>
+    <task id="LOCAL-00029" summary="rename GUIApp.java to Home.java, add package menuhelp and move help menu item to menuhelp package">
+      <created>1637240751089</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1637240751089</updated>
+    </task>
+    <task id="LOCAL-00030" summary="prototype recent file">
+      <created>1637248321055</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1637248321055</updated>
+    </task>
+    <task id="LOCAL-00031" summary="update recent file feature">
+      <created>1637315651919</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1637315651919</updated>
+    </task>
+    <task id="LOCAL-00032" summary="fix issue current directory">
+      <created>1637320192989</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1637320192989</updated>
+    </task>
+    <task id="LOCAL-00033" summary="update gitignore">
+      <created>1637321035051</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1637321035051</updated>
+    </task>
+    <task id="LOCAL-00034" summary="update commentar for documentation">
+      <created>1637579753630</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1637579753630</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fix Home.java not dispose">
+      <created>1637942866985</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1637942866985</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fix ui system issue">
+      <created>1637943403176</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1637943403176</updated>
+    </task>
+    <task id="LOCAL-00037" summary="add deselect menu">
+      <created>1638271880960</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1638271880960</updated>
+    </task>
+    <task id="LOCAL-00038" summary="add initialize create default folder when didn't exist">
+      <created>1638272493552</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1638272493552</updated>
+    </task>
+    <task id="LOCAL-00039" summary="add initialize create default folder when didn't exist">
+      <created>1638529800942</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1638529800942</updated>
+    </task>
+    <task id="LOCAL-00040" summary="add java doc">
+      <created>1638531312681</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1638531312681</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="update error handle file and folder not found" />
+    <MESSAGE value="clean up code" />
+    <MESSAGE value="fix update bug" />
+    <MESSAGE value="update assets directory" />
+    <MESSAGE value="add modality to prevent multiple dialog when call TambahBuku &amp; UpdateBuku" />
+    <MESSAGE value="improve quality" />
+    <MESSAGE value="fix id bug" />
+    <MESSAGE value="error handling" />
+    <MESSAGE value="add menu bar" />
+    <MESSAGE value="add edit menu" />
+    <MESSAGE value="add component package" />
+    <MESSAGE value="update UpdateBuku &amp; TambahBuku buttonUI" />
+    <MESSAGE value="add help menu" />
+    <MESSAGE value="rename class DataBuku.java to Buku.java" />
+    <MESSAGE value="rename GUIApp.java to Home.java, add package menuhelp and move help menu item to menuhelp package" />
+    <MESSAGE value="prototype recent file" />
+    <MESSAGE value="update recent file feature" />
+    <MESSAGE value="fix issue current directory" />
+    <MESSAGE value="update gitignore" />
+    <MESSAGE value="update commentar for documentation" />
+    <MESSAGE value="fix Home.java not dispose" />
+    <MESSAGE value="fix ui system issue" />
+    <MESSAGE value="add deselect menu" />
+    <MESSAGE value="add initialize create default folder when didn't exist" />
+    <MESSAGE value="add java doc" />
+    <option name="LAST_COMMIT_MESSAGE" value="add java doc" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CRUD_DataBuku$Main.ic" NAME="Main Coverage Results" MODIFIED="1637242783493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.cruddatabuku.*</FILTER>
+    </SUITE>
+  </component>
+</project>
