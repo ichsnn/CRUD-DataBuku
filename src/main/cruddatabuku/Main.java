@@ -15,9 +15,9 @@ public class Main {
         }
 
         // Jika ingin meilhat tampilan GUI tuliskan :
-        new Home();
+        //new Home();
 
         // jika ingin melihat tampilan console tuliskan :
-        //new ConsoleApp();
+        new ConsoleApp();
     }
 }

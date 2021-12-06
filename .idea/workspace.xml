@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="CRUD-DataBuku:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5985d831-74cd-41d5-9fd9-0fe67803cb04" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/CRUD_DataBuku_jar.xml" beforeDir="false" />
+    <list default="true" id="5985d831-74cd-41d5-9fd9-0fe67803cb04" name="Changes" comment="fix .idea folder">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/cruddatabuku/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cruddatabuku/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/cruddatabuku/screen/console/UpdateBuku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/cruddatabuku/screen/console/UpdateBuku.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +31,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -54,6 +64,30 @@
       <option name="presentableId" value="Default" />
       <updated>1638766186107</updated>
     </task>
+    <task id="LOCAL-00001" summary="fix .idea folder">
+      <created>1638766281067</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1638766281067</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix .idea folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix .idea folder" />
   </component>
 </project>

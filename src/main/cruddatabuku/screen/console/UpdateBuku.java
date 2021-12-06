@@ -108,10 +108,14 @@ public class UpdateBuku {
 
     private void validasiKodeBuku(List<Buku> listBuku) {
         boolean sameValue = false;
+        String kodeBukuCurrent;
         do {
-            getKodeBukuIni(listBuku);
+            kodeBukuCurrent = getKodeBukuIni(listBuku);
             isiData = validasiInput("Kode Buku", P_KODEBUKU);
             for (Buku buku : listBuku) {
+                if (kodeBukuCurrent.contentEquals(isiData)) {
+                    sameValue = false;
+                } else
                 if (buku.getKodeBuku().contentEquals(isiData)) {
                     System.out.println("Kode buku sudah ada!");
                     sameValue = true;
@@ -123,13 +127,14 @@ public class UpdateBuku {
         } while (sameValue);
     }
 
-    private void getKodeBukuIni(List<Buku> listBuku) {
+    private String getKodeBukuIni(List<Buku> listBuku) {
         for (Buku buku : listBuku) {
             if (buku.getId() == id) {
                 System.out.println("Isi data saat ini : " + buku.getKodeBuku());
-                break;
+                return buku.getKodeBuku();
             }
         }
+        return "";
     }
 
     private void getJudulBukuSaatIni(List<Buku> listBuku) {
