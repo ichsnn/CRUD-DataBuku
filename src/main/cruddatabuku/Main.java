@@ -18,6 +18,6 @@ public class Main {
         new Home();
 
         // jika ingin melihat tampilan console tuliskan :
-        // new ConsoleApp();
+        //new ConsoleApp();
     }
 }
